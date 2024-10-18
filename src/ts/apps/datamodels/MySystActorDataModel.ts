@@ -1,15 +1,15 @@
 import TypeDataModel = foundry.abstract.TypeDataModel;
 import {
-  MySystActorSchema,
-  mySystActorSchema,
-} from "../schemas/MySystActorSchema";
-import MySystActor from "../documents/MySystActor";
+  FacesActorSchema,
+  facesActorSchema,
+} from "../schemas/FacesActorSchema";
+import FacesActor from "../documents/FacesActor";
 
-export default class MySystActorDataModel extends TypeDataModel<
-  MySystActorSchema,
-  MySystActor
+export default class FacesActorDataModel extends TypeDataModel<
+  FacesActorSchema,
+  FacesActor
 > {
   static override defineSchema() {
-    return mySystActorSchema;
+    return facesActorSchema;
   }
 }

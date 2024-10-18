@@ -2,9 +2,9 @@
 
 <form class="actor-sheet {{ cssClass }}" autocomplete="off">
   {{> (partial moduleId "actor/header.hbs") moduleId=moduleId actor=actor}}
-  <section class="mysyst-talents">
+  <section class="faces-talents">
     {{#each actor.system.talents as |talent|}}
-    <div class="mysyst-talent">
+    <div class="faces-talent">
       <input
         type="text"
         name="system.talents.{{ @index }}.name"
@@ -21,7 +21,7 @@
       }}</textarea>
       <button
         type="button"
-        class="mysyst-talent-roll"
+        class="faces-talent-roll"
         data-talent="{{ @index }}"
       >
         <i class="fa-solid fa-dice"></i>
