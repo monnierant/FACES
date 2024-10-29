@@ -1,0 +1,13 @@
+<select class="{{ class }}" name="{{ carac }}">
+  {{#each dices as |dice|}}
+  {{#if (eq dice ../dice)}}
+  <option value="{{ dice }}" selected>
+    {{ localize (concat 'FACES.Global.dices.' dice) }}
+  </option>
+  {{else}}
+  <option value="{{ dice }}">
+    {{ localize (concat 'FACES.Global.dices.' dice) }}
+  </option>
+  {{/if}}
+  {{/each}}
+</select>

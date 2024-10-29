@@ -28,9 +28,39 @@
   }
 
   .sheet-header {
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 0 0;
     input[type="number"] {
       text-align: center;
+    }
+
+    .faces-header-content {
+      flex-grow: 6;
+    }
+
+    .faces-face {
+      width: 177px;
+      margin: 0 0.5rem 0 0;
+      input {
+        width: auto;
+        margin: 0 0 0.25rem 0;
+      }
+    }
+  }
+
+  .faces-tabs {
+    @include flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    margin: 0.25rem 0 0 0;
+  }
+
+  .faces-tab {
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem 0.5rem 0 0;
+    &.active {
+      background-color: rgba(255, 255, 255, 0.75);
     }
   }
 
@@ -38,26 +68,92 @@
     @include flex;
     flex-direction: row;
     width: 100%;
+    gap: 0.5rem;
   }
 
-  .faces-talents {
+  .faces-attributes-talents,
+  .faces-assets-section {
     @include flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
     width: 100%;
-    margin: 0 0 0.5em 0;
+    align-items: center;
+    justify-content: flex-start;
     padding: 0.5em;
     border: 1px solid #000;
     border-radius: 5px;
     background-color: #f0f0f0;
   }
 
-  .faces-talent {
+  .faces-attributes-talents {
+    margin: 0.25rem 0 0 0;
+  }
+  .faces-assets-section {
+    margin: 0 0 0.25rem 0;
+  }
+
+  .faces-talents,
+  .faces-attributes,
+  .faces-assets {
     @include flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 0.25em;
+    margin-top: 0;
+  }
+
+  .faces-attributes {
+    width: 100%;
+  }
+
+  .faces-talent,
+  .faces-attribute,
+  .faces-asset {
+    @include flex;
+    flex-direction: row;
     gap: 0.1em;
 
-    input {
-      text-align: center;
+    .faces-asset-name {
+      width: 8rem;
+    }
+  }
+
+  .faces-talent:last-child {
+    input,
+    select {
+      background-color: #0000005b;
+    }
+  }
+
+  .faces-weapons {
+    margin: 0 0 0.5em 0;
+    padding: 0.5em;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    gap: 0 0.5rem;
+    .faces-weapon {
+      @include flex;
+      justify-content: flex-start;
+
+      .faces-weapon-name {
+        width: 8rem;
+      }
+
+      .faces-weapon-ranged-dice {
+        width: 3rem;
+      }
+      .faces-weapon-range {
+        width: 3rem;
+      }
+
+      .faces-weapon-melee-dice {
+        width: 6.5rem;
+      }
+      .faces-weapon-special {
+        width: calc(100% - 14rem);
+      }
     }
   }
 }

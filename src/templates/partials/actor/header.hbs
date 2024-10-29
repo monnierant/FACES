@@ -2,65 +2,129 @@
 {{!-- Header --}}
 {{!-- ----------------------------------------- --}}
 <header class="sheet-header">
-  <img
-    src="{{ actor.img }}"
-    data-edit="img"
-    title="{{ actor.name }}"
-    height="100"
-    width="177"
-  />
+  <div class="faces-face">
+    <input
+      class="faces-face-name"
+      name="name"
+      type="text"
+      value="{{ actor.name }}"
+    />
+    <img
+      src="{{ actor.img }}"
+      data-edit="img"
+      title="{{ actor.name }}"
+      height="100"
+      width="177"
+    />
+  </div>
   <div class="faces-header-content">
+    {{!-- Stats --}}
     <div class="faces-header-section">
-      <div>
-        <label>{{localize 'MYSYST.Actor.health'}}</label>
-        <div class="faces-header-section">
-          <a class="faces-health-update" data-value="-1"
-            ><i class="fa-solid fa-square-caret-down"></i
-          ></a>
-          <input
-            name="system.health.current"
-            type="number"
-            value="{{ actor.system.health.current }}"
-          />
-          <input name="health" type="number" value="1" />
-          <a class="faces-health-update" data-value="1"
-            ><i class="fa-solid fa-square-caret-up"></i
-          ></a>
-          <div class="faces-separator"></div>
-          <input
-            class="faces-vital-max"
-            name="system.health.max"
-            type="number"
-            value="{{ actor.system.health.max }}"
-          />
+      <div
+        class="faces-header-section-stats faces-header-section faces-header-section-gap"
+      >
+        <div>
+          <label
+            >{{localize 'FACES.Actor.health'}} ({{ health.max }} |
+            {{ health.line }})</label
+          >
+          {{> (partial moduleId 'actor/hpmpbar') color="#b71c1c" value=health}}
+          <div class="faces-header-section">
+            <a class="faces-health-update" data-mult="-1"
+              ><i class="fa-solid fa-square-caret-down"></i
+            ></a>
+            <input
+              name="system.health.current"
+              type="hidden"
+              value="{{ actor.system.health.current }}"
+            />
+            <input name="health" type="number" value="1" />
+            <a class="faces-health-update" data-mult="1"
+              ><i class="fa-solid fa-square-caret-up"></i
+            ></a>
+            <div class="faces-separator"></div>
+            <input
+              class="faces-vital-max"
+              name="system.health.max"
+              type="number"
+              value="{{ actor.system.health.max }}"
+            />
+          </div>
+        </div>
+        <div>
+          <label>{{localize 'FACES.Actor.mana'}} ({{ mana.max }})</label>
+          {{> (partial moduleId 'actor/hpmpbar') color="#1C7BB8" value=mana}}
+
+          <div class="faces-header-section">
+            <a class="faces-mana-update" data-mult="-1"
+              ><i class="fa-solid fa-square-caret-down"></i
+            ></a>
+            <input
+              name="system.mana.current"
+              type="hidden"
+              value="{{ actor.system.mana.current }}"
+            />
+            <input name="mana" type="number" value="1" />
+            <a class="faces-mana-update" data-mult="1"
+              ><i class="fa-solid fa-square-caret-up"></i
+            ></a>
+            <div class="faces-separator"></div>
+            <input
+              class="faces-vital-max"
+              name="system.mana.max"
+              type="number"
+              value="{{ actor.system.mana.max }}"
+            />
+          </div>
         </div>
       </div>
-      {{#if (eq actor.system.type 'character')}}
-      <div>
-        <label>{{localize 'MYSYST.Actor.mana'}}</label>
-        <div class="faces-header-section">
-          <a class="faces-mana-update" data-value="-1"
-            ><i class="fa-solid fa-square-caret-down"></i
-          ></a>
+    </div>
+
+    <section class="faces-attributes-talents">
+      <div class="faces-attributes">
+        {{#each actor.system.attributes as |attribute|}}
+        <div class="faces-attribute">
+          <div>{{ attribute.name }}</div>
           <input
-            name="system.mana.current"
-            type="number"
-            value="{{ actor.system.mana.current }}"
+            name="system.attributes.{{ @index }}.name"
+            type="hidden"
+            value="{{ attribute.name }}"
           />
-          <input name="mana" type="number" value="1" />
-          <a class="faces-mana-update" data-value="1"
-            ><i class="fa-solid fa-square-caret-up"></i
-          ></a>
-          <div class="faces-separator"></div>
-          <input
-            class="faces-vital-max"
-            name="system.mana.max"
-            type="number"
-            value="{{ actor.system.mana.max }}"
-          />
+          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.attributes.' @index) '.dice') dice=attribute.dice }}
         </div>
+        {{/each}}
       </div>
-      {{/if}}
+      <div class="faces-talents">
+        {{#each actor.system.talents as |talent|}}
+        <div class="faces-talent">
+          <input
+            class="faces-talent-name"
+            name="system.talents.{{ @index }}.name"
+            type="text"
+            value="{{ talent.name }}"
+            placeholder="{{ localize 'FACES.Actor.talent' }}"
+          />
+          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.talents.' @index) '.dice') dice=talent.dice }}
+        </div>
+        {{/each}}
+      </div>
+    </section>
+    {{!-- Tabs --}}
+    <div class="faces-header-section faces-header-section-tabs">
+      <div class="faces-tabs">
+        {{#each tabs as |onetab|}}
+        <a
+          class="faces-tab
+        {{#if (eq onetab ../tab)}}
+          active
+        {{/if}}
+        "
+          data-tab="{{ onetab }}"
+        >
+          {{ localize (concat 'FACES.Actor.tabs.' onetab) }}
+        </a>
+        {{/each}}
+      </div>
     </div>
   </div>
 </header>

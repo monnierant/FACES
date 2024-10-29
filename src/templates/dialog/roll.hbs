@@ -4,12 +4,12 @@
     <div class="faces-dialog-modifier">
       <label
         for="faces-dialog-modifier-difficulty"
-        >{{ localize 'MYSYST.Global.difficulty' }}</label
+        >{{ localize 'FACES.Global.difficulty' }}</label
       >
       <select id="faces-dialog-modifier-difficulty" name="difficulty">
         {{#each difficultyLevels as |difficulty|}}
         <option value="{{ difficulty.value }}">
-          {{ localize (concat 'MYSYST.Dialog.difficulty.' difficulty.label) }}
+          {{ localize (concat 'FACES.Dialog.difficulty.' difficulty.label) }}
           ({{ difficulty.value }})
         </option>
         {{/each}}

@@ -1,6 +1,15 @@
 {
-  "MYSYST": {
+  "FACES": {
     "Global": {
+      "dices": {
+        "0": "",
+        "4": "D4",
+        "6": "D6",
+        "8": "D8",
+        "10": "D10",
+        "12": "D12",
+        "20": "D20"
+      },
       "difficulty": "Difficulté"
     },
     "Dialog": {
@@ -13,11 +22,32 @@
       }
     },
     "Actor": {
-      "mana": "Mana",
+      "mana": "Énergie",
       "health": "Santé",
       "note": "Note",
+      "attributes": "Attributs",
       "talents": "Talents",
-      "name": "Nom"
+      "talent": "Talent",
+      "name": "Nom",
+      "weapons": "Armes",
+      "assets": "Atouts",
+      "weapon": {
+        "name": "Nom",
+        "range": "Portée",
+        "damage": "Dégâts",
+        "special": "Spécial"
+      },
+      "placeholder": {
+        "asset": "Atout",
+        "effect": "Effet"
+      },
+      "tabs": {
+        "attributes": "Attributs",
+        "talents": "Talents",
+        "skills": "Compétences",
+        "inventory": "Inventaire",
+        "notes": "Notes"
+      }
     }
   }
 }
