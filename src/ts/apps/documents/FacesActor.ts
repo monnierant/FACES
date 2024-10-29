@@ -74,4 +74,40 @@ export default class FacesActor extends Actor {
       system: { mana: { current: manaValue } },
     });
   }
+  public async updateExtra(extra: number) {
+    // const syst = this.system as any as FacesActorSystem;
+    const syst: FacesActorSystem = this.system as any as FacesActorSystem;
+
+    const extraValue = Math.clamp(
+      syst.extra.current + extra,
+      0,
+      StatHelpers.calculateActorExtra(this).max
+    );
+
+    await this.update({
+      system: { extra: { current: extraValue } },
+    });
+  }
+
+  public async updateXp(xp: number) {
+    // const syst = this.system as any as BrigandyneActorSystem;
+    const syst: FacesActorSystem = this.system as any as FacesActorSystem;
+
+    if (syst.experience.current + xp < 0) {
+      return;
+    }
+
+    await this.update({
+      system: {
+        experience: {
+          current: syst.experience.current + xp,
+          total: Math.max(syst.experience.total + xp, syst.experience.total),
+          spent: Math.max(
+            syst.experience.spent + xp * -1,
+            syst.experience.spent
+          ),
+        },
+      },
+    });
+  }
 }

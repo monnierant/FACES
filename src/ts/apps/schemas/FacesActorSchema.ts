@@ -9,17 +9,30 @@ import {
   assetSchema,
   Weapon,
   weaponSchema,
+  Contact,
+  contactSchema,
+  Experience,
+  experienceSchema,
 } from "./commonSchema";
 
 export interface FacesActorSystem {
   type: string;
   health: VitalStat;
   mana: VitalStat;
+  extra: VitalStat;
   attributes: Carac[];
   talents: Carac[];
   assets: Asset[];
   meleeWeapons: Weapon[];
   rangedWeapons: Weapon[];
+  contacts: Contact[];
+  bag: string;
+  bag2: string;
+  vice: string;
+  money: number;
+  money2: number;
+  money3: number;
+  experience: Experience;
 }
 
 export const facesActorSchema = {
@@ -27,6 +40,7 @@ export const facesActorSchema = {
 
   health: new fields.SchemaField(vitalStatSchema()),
   mana: new fields.SchemaField(vitalStatSchema()),
+  extra: new fields.SchemaField(vitalStatSchema()),
 
   attributes: new fields.ArrayField(new fields.SchemaField(caracSchema()), {
     initial: attributeList.map((carac) => ({
@@ -65,6 +79,30 @@ export const facesActorSchema = {
       range: 0,
       special: "",
     }),
+  }),
+
+  contacts: new fields.ArrayField(new fields.SchemaField(contactSchema()), {
+    initial: Array(defaultLenght.contact).fill({
+      name: "",
+      dice: 0,
+    }),
+  }),
+
+  bag: new fields.StringField({ initial: "" }),
+  bag2: new fields.StringField({ initial: "" }),
+
+  vice: new fields.StringField({ initial: "" }),
+
+  money: new fields.NumberField({ initial: 0 }),
+  money2: new fields.NumberField({ initial: 0 }),
+  money3: new fields.NumberField({ initial: 0 }),
+
+  experience: new fields.SchemaField(experienceSchema(), {
+    initial: {
+      current: 0,
+      total: 0,
+      spent: 0,
+    },
   }),
 };
 

@@ -29,6 +29,7 @@
 
   .sheet-header {
     margin: 0 0 0 0;
+    align-items: flex-end !important;
     input[type="number"] {
       text-align: center;
     }
@@ -72,7 +73,8 @@
   }
 
   .faces-attributes-talents,
-  .faces-assets-section {
+  .faces-assets-section,
+  .faces-contacts {
     @include flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -84,6 +86,26 @@
     border: 1px solid #000;
     border-radius: 5px;
     background-color: #f0f0f0;
+  }
+
+  .faces-inventory {
+    @include flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    div {
+      width: 100%;
+    }
+  }
+
+  .faces-bag {
+    padding: 0.5em;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+  }
+
+  .faces-contacts {
+    flex-direction: column;
   }
 
   .faces-attributes-talents {
@@ -109,7 +131,8 @@
 
   .faces-talent,
   .faces-attribute,
-  .faces-asset {
+  .faces-asset,
+  .faces-contact {
     @include flex;
     flex-direction: row;
     gap: 0.1em;
@@ -155,5 +178,35 @@
         width: calc(100% - 14rem);
       }
     }
+  }
+
+  .faces-money,
+  .faces-xp-section {
+    @include flex;
+    justify-content: flex-start;
+    gap: 0.1rem;
+    input {
+      width: 2rem;
+    }
+    input[name="system.money"] {
+      width: 4rem;
+    }
+    label {
+      text-wrap: nowrap;
+    }
+  }
+
+  .faces-header-footer {
+    @include flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .faces-stats {
+    @include flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-between;
+    width: 100%;
   }
 }

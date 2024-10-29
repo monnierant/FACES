@@ -5,6 +5,7 @@ export const defaultLenght = {
   asset: 10,
   meleeweapon: 4,
   rangedweapon: 4,
+  contact: 4,
 };
 
 export const difficultyLevels = [
@@ -18,7 +19,7 @@ export const difficultyLevels = [
 export const dices = [0, 4, 6, 8, 10, 12, 20];
 
 export const tabs = {
-  character: ["attributes"], //, "inventory", "histo", "spells"],
+  character: ["attributes", "inventory"], // "histo", "spells"],
   npc: ["abilities"],
 };
 

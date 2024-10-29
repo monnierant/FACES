@@ -44,4 +44,16 @@ export const StatHelpers = {
       percent: Math.round((base.current / base.max) * 100),
     };
   },
+
+  calculateActorExtra: function (actor: FacesActor) {
+    const syst = actor.system as any as FacesActorSystem;
+
+    const base = StatHelpers.calculateActorVital(syst.extra);
+
+    return {
+      current: base.current,
+      max: base.max,
+      percent: Math.round((base.current / base.max) * 100),
+    };
+  },
 };

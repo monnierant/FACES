@@ -12,6 +12,10 @@
       },
       "difficulty": "Difficulté"
     },
+    "Settings": {
+      "currency": "Monnaie",
+      "currencyHint": "Monnaie utilisée dans le jeu"
+    },
     "Dialog": {
       "difficulty": {
         "easy": "Facile",
@@ -31,6 +35,10 @@
       "name": "Nom",
       "weapons": "Armes",
       "assets": "Atouts",
+      "contacts": "Contacts",
+      "inventory": "Inventaire",
+      "vice": "Travers",
+      "experience": "XP",
       "weapon": {
         "name": "Nom",
         "range": "Portée",

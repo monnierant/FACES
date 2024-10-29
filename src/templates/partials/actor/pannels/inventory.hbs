@@ -1,0 +1,35 @@
+<div
+  class="
+{{#if (not display)}}
+  hidden
+{{/if}}"
+>
+  <div class="faces-inventory">
+    <div class="faces-bag">
+      <textarea class="faces-inventory-bag" name="system.bag" rows="29">
+        {{ actor.system.bag }}
+      </textarea>
+    </div>
+    <div>
+      <div class="faces-bag">
+        <textarea class="faces-inventory-bag" name="system.bag2" rows="17">
+          {{ actor.system.bag2 }}
+        </textarea>
+      </div>
+      <h3>{{ localize 'FACES.Actor.contacts' }}</h3>
+      <section class="faces-contacts">
+        {{#each actor.system.contacts as |contact|}}
+        <div class="faces-contact">
+          <input
+            class="faces-contact-name"
+            name="system.contacts.{{ @index }}.name"
+            type="text"
+            value="{{ contact.name }}"
+          />
+          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.contacts.' @index) '.dice') dice=contact.dice }}
+        </div>
+        {{/each}}
+      </section>
+    </div>
+  </div>
+</div>

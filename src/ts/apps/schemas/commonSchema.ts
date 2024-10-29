@@ -44,3 +44,25 @@ export const weaponSchema = () => ({
   range: new fields.NumberField({ initial: 0 }),
   special: new fields.StringField({ initial: "" }),
 });
+
+export interface Contact {
+  name: string;
+  dice: number;
+}
+
+export const contactSchema = () => ({
+  name: new fields.StringField({ initial: "" }),
+  dice: new fields.NumberField({ initial: 0 }),
+});
+
+export interface Experience {
+  current: number;
+  total: number;
+  spent: number;
+}
+
+export const experienceSchema = () => ({
+  current: new fields.NumberField({ initial: 0 }),
+  total: new fields.NumberField({ initial: 0 }),
+  spent: new fields.NumberField({ initial: 0 }),
+});

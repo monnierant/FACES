@@ -12,6 +12,10 @@
       },
       "difficulty": "Difficulty"
     },
+    "Settings": {
+      "currency": "Currency",
+      "currencyHint": "Currency used in the game"
+    },
     "Dialog": {
       "difficulty": {
         "easy": "Easy",
@@ -31,6 +35,10 @@
       "name": "Name",
       "weapons": "Weapons",
       "assets": "Assets",
+      "contacts": "Contacts",
+      "inventory": "Inventory",
+      "vice": "Vice",
+      "experience": "XP",
       "weapon": {
         "name": "Name",
         "range": "Range",

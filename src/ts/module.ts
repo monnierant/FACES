@@ -9,7 +9,9 @@ import { range } from "./handlebarsHelpers/range";
 import { concat } from "./handlebarsHelpers/concat";
 import { ternary } from "./handlebarsHelpers/ternary";
 import { partial } from "./handlebarsHelpers/partial";
-import { facesActorSchema } from "./apps/schemas/FacesActorSchema";
+
+import { setupSettings } from "./settings";
+
 import FacesActorDataModel from "./apps/datamodels/FacesActorDataModel";
 import MyNpcRoleActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
 import FacesActor from "./apps/documents/FacesActor";
@@ -33,6 +35,7 @@ async function preloadTemplates(): Promise<any> {
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
     `systems/${moduleId}/templates/partials/actor/hpmpbar.hbs`,
     `systems/${moduleId}/templates/partials/actor/pannels/attributes.hbs`,
+    `systems/${moduleId}/templates/partials/actor/pannels/inventory.hbs`,
   ];
 
   return loadTemplates(templatePaths);
@@ -40,8 +43,6 @@ async function preloadTemplates(): Promise<any> {
 
 Hooks.once("init", () => {
   console.log(`Initializing ${moduleId}`);
-
-  console.log("facesActorSchema", facesActorSchema);
 
   Handlebars.registerHelper("partial", partial);
   Handlebars.registerHelper("range", range);
@@ -60,4 +61,5 @@ Hooks.once("init", () => {
   Actors.registerSheet(moduleId, FacesActorSheet, { makeDefault: true });
 
   preloadTemplates();
+  setupSettings();
 });
