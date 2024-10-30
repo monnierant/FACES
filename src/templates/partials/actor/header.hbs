@@ -2,65 +2,252 @@
 {{!-- Header --}}
 {{!-- ----------------------------------------- --}}
 <header class="sheet-header">
-  <img
-    src="{{ actor.img }}"
-    data-edit="img"
-    title="{{ actor.name }}"
-    height="100"
-    width="177"
-  />
+  <div class="faces-face">
+    <input
+      class="faces-face-name"
+      name="name"
+      type="text"
+      value="{{ actor.name }}"
+    />
+    <input
+      class="faces-face-name"
+      name="system.vice"
+      type="text"
+      value="{{ actor.system.vice }}"
+      placeholder="{{ localize 'FACES.Actor.vice' }}"
+    />
+    <img
+      src="{{ actor.img }}"
+      data-edit="img"
+      title="{{ actor.name }}"
+      height="100"
+      width="177"
+    />
+  </div>
   <div class="faces-header-content">
+    {{!-- Stats --}}
     <div class="faces-header-section">
-      <div>
-        <label>{{localize 'MYSYST.Actor.health'}}</label>
-        <div class="faces-header-section">
-          <a class="faces-health-update" data-value="-1"
-            ><i class="fa-solid fa-square-caret-down"></i
-          ></a>
+      <div
+        class="faces-header-section-stats faces-header-section faces-header-section-gap"
+      >
+        {{!-- Life --}}
+        <div>
+          <label
+            >{{localize 'FACES.Actor.health'}} ({{ health.current }}/{{
+              health.max
+            }}
+            | {{ health.line }})</label
+          >
+          {{> (partial moduleId 'actor/hpmpbar') color="#b71c1c" value=health}}
+          <div class="faces-header-section">
+            <a class="faces-health-update" data-mult="-1"
+              ><i class="fa-solid fa-square-caret-down"></i
+            ></a>
+            <input
+              name="system.health.current"
+              type="hidden"
+              value="{{ actor.system.health.current }}"
+            />
+            <input name="health" type="number" value="1" />
+            <a class="faces-health-update" data-mult="1"
+              ><i class="fa-solid fa-square-caret-up"></i
+            ></a>
+            <div class="faces-separator"></div>
+            <input
+              class="faces-vital-max"
+              name="system.health.max"
+              type="number"
+              value="{{ actor.system.health.max }}"
+            />
+          </div>
+        </div>
+        {{!-- Mana --}}
+        <div>
+          <label
+            >{{localize 'FACES.Actor.mana'}} ({{ mana.current }}/{{
+              mana.max
+            }})</label
+          >
+          {{> (partial moduleId 'actor/hpmpbar') color="#1C7BB8" value=mana}}
+
+          <div class="faces-header-section">
+            <a class="faces-mana-update" data-mult="-1"
+              ><i class="fa-solid fa-square-caret-down"></i
+            ></a>
+            <input
+              name="system.mana.current"
+              type="hidden"
+              value="{{ actor.system.mana.current }}"
+            />
+            <input name="mana" type="number" value="1" />
+            <a class="faces-mana-update" data-mult="1"
+              ><i class="fa-solid fa-square-caret-up"></i
+            ></a>
+            <div class="faces-separator"></div>
+            <input
+              class="faces-vital-max"
+              name="system.mana.max"
+              type="number"
+              value="{{ actor.system.mana.max }}"
+            />
+          </div>
+        </div>
+        {{!-- Extra --}}
+        {{#if extraGauge.enabled}}
+        <div>
+          <label
+            >{{ extraGauge.text }} ({{ extra.current }}/{{ extra.max }})</label
+          >
+          {{> (partial moduleId 'actor/hpmpbar') color="#1cb8ae" value=extra}}
+
+          <div class="faces-header-section">
+            <a class="faces-extra-update" data-mult="-1"
+              ><i class="fa-solid fa-square-caret-down"></i
+            ></a>
+            <input
+              name="system.extra.current"
+              type="hidden"
+              value="{{ actor.system.extra.current }}"
+            />
+            <input name="extra" type="number" value="1" />
+            <a class="faces-extra-update" data-mult="1"
+              ><i class="fa-solid fa-square-caret-up"></i
+            ></a>
+            <div class="faces-separator"></div>
+            <input
+              class="faces-vital-max"
+              name="system.extra.max"
+              type="number"
+              value="{{ actor.system.extra.max }}"
+            />
+          </div>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+
+    <section class="faces-attributes-talents">
+      <div class="faces-attributes">
+        {{#each actor.system.attributes as |attribute|}}
+        <div class="faces-attribute">
+          <div>{{ localize (concat 'FACES.Actor.stats.' attribute.name) }}</div>
           <input
-            name="system.health.current"
-            type="number"
-            value="{{ actor.system.health.current }}"
+            name="system.attributes.{{ @index }}.name"
+            type="hidden"
+            value="{{ attribute.name }}"
           />
-          <input name="health" type="number" value="1" />
-          <a class="faces-health-update" data-value="1"
-            ><i class="fa-solid fa-square-caret-up"></i
-          ></a>
-          <div class="faces-separator"></div>
+          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.attributes.' @index) '.dice') dice=attribute.dice }}
+        </div>
+        {{/each}}
+      </div>
+      <div class="faces-talents">
+        {{#each actor.system.talents as |talent|}}
+        <div class="faces-talent">
           <input
-            class="faces-vital-max"
-            name="system.health.max"
-            type="number"
-            value="{{ actor.system.health.max }}"
+            class="faces-talent-name"
+            name="system.talents.{{ @index }}.name"
+            type="text"
+            value="{{ talent.name }}"
+            placeholder="{{ localize 'FACES.Actor.talent' }}"
           />
+          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.talents.' @index) '.dice') dice=talent.dice }}
+        </div>
+        {{/each}}
+      </div>
+      {{!-- Money & XP --}}
+      <div class="faces-stats">
+        <div class="faces-money">
+          <input
+            name="system.money"
+            type="number"
+            value="{{ actor.system.money }}"
+          />
+          <label>
+            {{ currency.c1 }}
+          </label>
+          {{#if currency.multi}}
+          <input
+            name="system.money2"
+            type="number"
+            value="{{ actor.system.money2 }}"
+          />
+          <label>
+            {{ currency.c2 }}
+          </label>
+          <input
+            name="system.money3"
+            type="number"
+            value="{{ actor.system.money3 }}"
+          />
+          <label>
+            {{ currency.c3 }}
+          </label>
+          {{else}}
+          <input
+            name="system.money2"
+            type="hidden"
+            value="{{ actor.system.money2 }}"
+          />
+          <input
+            name="system.money3"
+            type="hidden"
+            value="{{ actor.system.money3 }}"
+          />
+
+          {{/if}}
+        </div>
+        <div class="faces-xp-section">
+          <label>{{localize 'FACES.Actor.experience'}}</label>
+          <input
+            name="system.experience.current"
+            type="hidden"
+            value="{{ actor.system.experience.current }}"
+          />
+          <input
+            name="system.experience.total"
+            type="hidden"
+            value="{{ actor.system.experience.total }}"
+          />
+          <input
+            name="system.experience.spent"
+            type="hidden"
+            value="{{ actor.system.experience.spent }}"
+          />
+          <div class="faces-experience-values">
+            {{ actor.system.experience.current }} /
+            {{ actor.system.experience.spent }} /
+            {{ actor.system.experience.total }}
+          </div>
+          <a class="faces-xp" data-mult="-1">
+            <i class="fa-solid fa-square-minus"></i>
+          </a>
+          <input name="xp" type="number" value="0" />
+          <a class="faces-xp" data-mult="1">
+            <i class="fa-solid fa-square-plus"></i>
+          </a>
+        </div>
+        <a class="faces-roll"><i class="fa-solid fa-dice"></i></a>
+      </div>
+    </section>
+
+    <div class="faces-header-footer">
+      {{!-- Tabs --}}
+      <div class="faces-header-section faces-header-section-tabs">
+        <div class="faces-tabs">
+          {{#each tabs as |onetab|}}
+          <a
+            class="faces-tab
+        {{#if (eq onetab ../tab)}}
+          active
+        {{/if}}
+        "
+            data-tab="{{ onetab }}"
+          >
+            {{ localize (concat 'FACES.Actor.tabs.' onetab) }}
+          </a>
+          {{/each}}
         </div>
       </div>
-      {{#if (eq actor.system.type 'character')}}
-      <div>
-        <label>{{localize 'MYSYST.Actor.mana'}}</label>
-        <div class="faces-header-section">
-          <a class="faces-mana-update" data-value="-1"
-            ><i class="fa-solid fa-square-caret-down"></i
-          ></a>
-          <input
-            name="system.mana.current"
-            type="number"
-            value="{{ actor.system.mana.current }}"
-          />
-          <input name="mana" type="number" value="1" />
-          <a class="faces-mana-update" data-value="1"
-            ><i class="fa-solid fa-square-caret-up"></i
-          ></a>
-          <div class="faces-separator"></div>
-          <input
-            class="faces-vital-max"
-            name="system.mana.max"
-            type="number"
-            value="{{ actor.system.mana.max }}"
-          />
-        </div>
-      </div>
-      {{/if}}
     </div>
   </div>
 </header>

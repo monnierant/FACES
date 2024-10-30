@@ -1,5 +1,6 @@
 import { difficultyLevels, moduleId } from "../../constants";
 import FacesActor from "../documents/FacesActor";
+import { Weapon } from "../schemas/commonSchema";
 
 export default class FacesActorRollDialog extends Dialog {
   // ========================================
@@ -7,7 +8,7 @@ export default class FacesActorRollDialog extends Dialog {
   // ========================================
   constructor(
     actor: FacesActor,
-    talentId: number,
+    weapon: Weapon | undefined = undefined,
     options: any = {},
     data: any = {}
   ) {
@@ -38,14 +39,21 @@ export default class FacesActorRollDialog extends Dialog {
 
     // Set the actor
     this.actor = actor;
-    this.talentId = talentId;
+    this.weapon = weapon;
+  }
+
+  static override get defaultOptions() {
+    const defaultOptions = super.defaultOptions;
+    return foundry.utils.mergeObject(defaultOptions, {
+      width: 600,
+    });
   }
 
   // ========================================
   // Properties
   // ========================================
   public actor: FacesActor;
-  public talentId: number;
+  public weapon: Weapon | undefined;
   // public roll: CowboyBebopRoll | undefined;
 
   // Define the template to use for this sheet
@@ -57,7 +65,7 @@ export default class FacesActorRollDialog extends Dialog {
   override getData() {
     let data: any = super.getData();
     data.actor = this.actor;
-    data.talent = this.actor.getTalent(this.talentId);
+    data.weapon = this.weapon;
     data.difficultyLevels = difficultyLevels;
     return data;
   }
@@ -72,9 +80,30 @@ export default class FacesActorRollDialog extends Dialog {
       parseInt(
         html.find("#faces-dialog-modifier-difficulty").val() as string
       ) ?? 0;
-    await this.actor.rollTalent(
-      this.talentId,
-      isNaN(difficulty) ? 0 : difficulty
+    let modificator =
+      parseInt(
+        html.find("#faces-dialog-modifier-modificator").val() as string
+      ) ?? 0;
+    let talent =
+      parseInt(html.find("#faces-dialog-modifier-talent").val() as string) ?? 0;
+    let attribut =
+      parseInt(html.find("#faces-dialog-modifier-attribut").val() as string) ??
+      0;
+    let weaponBonus = 0;
+    if (this.weapon !== undefined) {
+      weaponBonus =
+        parseInt(
+          html.find("#faces-dialog-modifier-weaponBonus").val() as string
+        ) ?? 0;
+    }
+
+    await this.actor.rollTest(
+      isNaN(attribut) ? 0 : attribut,
+      isNaN(talent) ? 0 : talent,
+      isNaN(difficulty) ? 0 : difficulty,
+      isNaN(modificator) ? 0 : modificator,
+      this.weapon,
+      isNaN(weaponBonus) ? 0 : weaponBonus
     );
   }
 }

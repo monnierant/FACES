@@ -1,9 +1,26 @@
 {
-  "MYSYST": {
+  "FACES": {
     "Global": {
+      "dices": {
+        "0": "",
+        "4": "D4",
+        "6": "D6",
+        "8": "D8",
+        "10": "D10",
+        "12": "D12",
+        "20": "D20"
+      },
       "difficulty": "Difficulté"
     },
+    "Settings": {
+      "currency": "Monnaie",
+      "currencyHint": "Monnaie utilisée dans le jeu"
+    },
     "Dialog": {
+      "talent": "Talent",
+      "attribut": "Attribut",
+      "modificator": "Modificateur",
+      "weapon": "Bonus d'arme",
       "difficulty": {
         "easy": "Facile",
         "medium": "Moyen",
@@ -13,11 +30,60 @@
       }
     },
     "Actor": {
-      "mana": "Mana",
+      "mana": "Énergie",
       "health": "Santé",
       "note": "Note",
+      "attributes": "Attributs",
       "talents": "Talents",
-      "name": "Nom"
+      "talent": "Talent",
+      "name": "Nom",
+      "weapons": "Armes",
+      "assets": "Atouts",
+      "contacts": "Contacts",
+      "inventory": "Inventaire",
+      "vice": "Travers",
+      "appearance": "Apparence",
+      "experience": "XP",
+      "profile": "Profil",
+      "species": "Espèce",
+      "limit": "Limite",
+      "age": "Âge",
+      "height": "Taille",
+      "weight": "Poids",
+      "hair": "Cheveux",
+      "eyes": "Yeux",
+      "sex": "Sexe",
+      "signs": "Signes",
+      "background": "Background",
+      "damage": "Damage",
+      "armors": "Protections",
+      "weapon": {
+        "name": "Nom",
+        "range": "Portée",
+        "damage": "Dégâts",
+        "special": "Spécial"
+      },
+      "placeholder": {
+        "asset": "Atout",
+        "name": "Nom",
+        "special": "Spécial",
+        "effect": "Effet"
+      },
+      "tabs": {
+        "attributes": "Attributs",
+        "talents": "Talents",
+        "skills": "Compétences",
+        "inventory": "Inventaire",
+        "histo": "Historique",
+        "notes": "Notes"
+      },
+      "stats": {
+        "FOR": "FOR",
+        "AGI": "AGI",
+        "CAR": "CAR",
+        "SPI": "ESP",
+        "SEN": "SEN"
+      }
     }
   }
 }

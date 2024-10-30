@@ -28,9 +28,40 @@
   }
 
   .sheet-header {
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 0 0;
+    align-items: flex-end !important;
     input[type="number"] {
       text-align: center;
+    }
+
+    .faces-header-content {
+      flex-grow: 6;
+    }
+
+    .faces-face {
+      width: 177px;
+      margin: 0 0.5rem 0 0;
+      input {
+        width: auto;
+        margin: 0 0 0.25rem 0;
+      }
+    }
+  }
+
+  .faces-tabs {
+    @include flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    margin: 0.25rem 0 0 0;
+  }
+
+  .faces-tab {
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem 0.5rem 0 0;
+    &.active {
+      background-color: rgba(255, 255, 255, 0.75);
     }
   }
 
@@ -38,26 +69,219 @@
     @include flex;
     flex-direction: row;
     width: 100%;
+    gap: 0.5rem;
   }
 
-  .faces-talents {
+  .faces-attributes-talents,
+  .faces-assets-section,
+  .faces-contacts,
+  .faces-armors {
     @include flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
     width: 100%;
-    margin: 0 0 0.5em 0;
+    align-items: center;
+    justify-content: flex-start;
     padding: 0.5em;
     border: 1px solid #000;
     border-radius: 5px;
     background-color: #f0f0f0;
   }
 
-  .faces-talent {
+  .faces-inventory {
     @include flex;
+    align-items: flex-start;
+    gap: 0.5em;
+    div {
+      width: 100%;
+    }
+  }
+
+  .faces-bag {
+    padding: 0.5em;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+  }
+
+  .faces-contacts,
+  .faces-armors {
     flex-direction: column;
+    gap: 0;
+  }
+
+  .faces-attributes-talents {
+    margin: 0.25rem 0 0 0;
+  }
+  .faces-assets-section {
+    margin: 0 0 0.25rem 0;
+  }
+
+  .faces-talents,
+  .faces-attributes,
+  .faces-assets {
+    @include flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 0.25em;
+    margin-top: 0;
+  }
+
+  .faces-attributes {
+    width: 100%;
+  }
+
+  .faces-talent,
+  .faces-attribute,
+  .faces-asset,
+  .faces-contact,
+  .faces-armor {
+    @include flex;
+    flex-direction: row;
     gap: 0.1em;
 
-    input {
-      text-align: center;
+    .faces-asset-name {
+      width: 8rem;
     }
+  }
+
+  .faces-talent:last-child {
+    input,
+    select {
+      background-color: #0000005b;
+    }
+  }
+
+  .faces-weapons {
+    margin: 0 0 0.5em 0;
+    padding: 0.5em;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    gap: 0 0.5rem;
+    .faces-weapon {
+      @include flex;
+      justify-content: flex-start;
+
+      .faces-weapon-roll-icon {
+        width: 1rem;
+        text-align: center;
+        margin-right: 0.5rem;
+      }
+      .faces-weapon-roll-icon-greyed {
+        color: #00000030;
+      }
+
+      .faces-weapon-name {
+        width: 8rem;
+      }
+
+      .faces-weapon-ranged-dice {
+        width: 4rem;
+      }
+      .faces-weapon-range {
+        width: 3rem;
+        text-align: center;
+      }
+
+      .faces-weapon-melee-dice {
+        width: 7.5rem;
+      }
+      .faces-weapon-special {
+        width: calc(100% - 14rem);
+      }
+    }
+  }
+
+  .faces-money,
+  .faces-xp-section {
+    @include flex;
+    justify-content: flex-start;
+    gap: 0.1rem;
+    input {
+      width: 2rem;
+    }
+    input[name="system.money"] {
+      width: 4rem;
+    }
+    label {
+      text-wrap: nowrap;
+    }
+  }
+
+  .faces-header-footer {
+    @include flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .faces-stats {
+    @include flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .faces-roll {
+    width: auto;
+  }
+
+  .faces-histo {
+    @include flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    section {
+      margin: 0 0 0.5em 0;
+      padding: 0.5em;
+      border: 1px solid #000;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+    }
+
+    .faces-info {
+      @include flex;
+      flex-direction: column;
+      gap: 0;
+      flex-grow: 1;
+      align-items: flex-start;
+    }
+    .faces-appearance-section {
+      input {
+        width: 100%;
+      }
+    }
+  }
+  .faces-histo-collumn-a {
+    max-width: 60%;
+  }
+
+  .faces-histo-collumn-b {
+    width: 100%;
+  }
+
+  .faces-appearance-minisection,
+  .faces-info-collumn {
+    @include flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .faces-background-section {
+    width: 100%;
+  }
+
+  .faces-armor-name {
+    width: 5rem;
+  }
+  .faces-armor-defense {
+    width: 2rem;
+    text-align: center;
+  }
+
+  .faces-armor-special {
+    width: calc(100% - 7rem);
   }
 }

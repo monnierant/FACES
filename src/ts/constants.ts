@@ -1,7 +1,12 @@
 import { id } from "../system.json";
 
 export const defaultLenght = {
-  talent: 5,
+  talent: 6,
+  asset: 10,
+  meleeweapon: 4,
+  rangedweapon: 4,
+  contact: 4,
+  armor: 4,
 };
 
 export const difficultyLevels = [
@@ -11,5 +16,14 @@ export const difficultyLevels = [
   { value: -30, label: "veryhard" },
   { value: -40, label: "impossible" },
 ];
+
+export const dices = [0, 4, 6, 8, 10, 12, 20];
+
+export const tabs = {
+  character: ["attributes", "inventory", "histo"], //  ,"spells"],
+  npc: ["abilities"],
+};
+
+export const attributeList = ["FOR", "AGI", "CAR", "SPI", "SEN"];
 
 export const moduleId: string = id;

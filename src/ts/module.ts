@@ -9,10 +9,13 @@ import { range } from "./handlebarsHelpers/range";
 import { concat } from "./handlebarsHelpers/concat";
 import { ternary } from "./handlebarsHelpers/ternary";
 import { partial } from "./handlebarsHelpers/partial";
-import { facesActorSchema } from "./apps/schemas/FacesActorSchema";
+
+import { setupSettings } from "./settings";
+
 import FacesActorDataModel from "./apps/datamodels/FacesActorDataModel";
 import MyNpcRoleActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
 import FacesActor from "./apps/documents/FacesActor";
+import { removeEmpty } from "./handlebarsHelpers/removeEmpty";
 
 declare global {
   interface DocumentClassConfig {
@@ -29,7 +32,12 @@ declare global {
 
 async function preloadTemplates(): Promise<any> {
   const templatePaths = [
+    `systems/${moduleId}/templates/partials/diceSelector.hbs`,
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
+    `systems/${moduleId}/templates/partials/actor/hpmpbar.hbs`,
+    `systems/${moduleId}/templates/partials/actor/pannels/attributes.hbs`,
+    `systems/${moduleId}/templates/partials/actor/pannels/inventory.hbs`,
+    `systems/${moduleId}/templates/partials/actor/pannels/histo.hbs`,
   ];
 
   return loadTemplates(templatePaths);
@@ -38,12 +46,11 @@ async function preloadTemplates(): Promise<any> {
 Hooks.once("init", () => {
   console.log(`Initializing ${moduleId}`);
 
-  console.log("facesActorSchema", facesActorSchema);
-
   Handlebars.registerHelper("partial", partial);
   Handlebars.registerHelper("range", range);
   Handlebars.registerHelper("concat", concat);
   Handlebars.registerHelper("ternary", ternary);
+  Handlebars.registerHelper("removeEmpty", removeEmpty);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
     return a / b;
@@ -57,4 +64,5 @@ Hooks.once("init", () => {
   Actors.registerSheet(moduleId, FacesActorSheet, { makeDefault: true });
 
   preloadTemplates();
+  setupSettings();
 });

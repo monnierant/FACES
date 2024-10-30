@@ -1,29 +1,21 @@
-# Faces - Foundry VTT System
+# F.A.C.E.S. - Foundry VTT System
 
-## Purpose
+F.A.C.E.S. V2 is a french TTRPG made by `James Tornade`
 
-This template is here to help you bootstrap quickly a foundry vtt system compatible foundry v12 using `typescript`.
-
-It works thanks to [foundry-vtt-types](https://github.com/League-of-Foundry-Developers/foundry-vtt-type)
+This character sheet is not an official one, its purpose is to provide an easy-to-use synthetic sheet for my DM's.
 
 ## Install
 
+### Manual Install
+
+[Latest Release](https://github.com/monnierant/FACES/releases/latest/download/system.json)
+
 ## Usage
 
-Go to `system.json`and edit the system `id`
+![Page1](docs/img/Page1.png)
 
-Replace all ref to `Faces` by your system name
+![Page2](docs/img/Page2.png)
 
-## CI
+![Page3](docs/img/Page3.png)
 
-You must create a secret in github action `GITHUB_TOKEN` with a personal access token so `semantic-release` will be able to clone your code and make release
-
-- contents: write to be able to publish a GitHub release
-- issues: write to be able to comment on released issues
-- pull-requests: write to be able to comment on released pull requests
-
-(cf [@semantic-release/github](https://github.com/semantic-release/github))
-
-### Manual Deploy your system
-
-[Latest Release](https://github.com/<group-user>/<repo>/releases/latest/download/system.json)
+![Page4](docs/img/Page4.png)
