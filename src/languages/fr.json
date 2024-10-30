@@ -17,6 +17,9 @@
       "currencyHint": "Monnaie utilisée dans le jeu"
     },
     "Dialog": {
+      "talent": "Talent",
+      "attribut": "Attribut",
+      "modificator": "Modificateur",
       "difficulty": {
         "easy": "Facile",
         "medium": "Moyen",

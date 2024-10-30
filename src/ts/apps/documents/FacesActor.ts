@@ -3,6 +3,7 @@ import { FacesActorSystem } from "../schemas/FacesActorSchema";
 import FacesActorRollDialog from "../dialogs/FacesRollDialog";
 import { moduleId } from "../../constants";
 import { StatHelpers } from "../helpers/StatHelpers";
+import { Carac } from "../schemas/commonSchema";
 
 export default class FacesActor extends Actor {
   public constructor(data: any, context: any) {
@@ -10,31 +11,45 @@ export default class FacesActor extends Actor {
   }
 
   public getTalentValueById(talentId: number) {
-    return this.getTalent(talentId).value;
+    return this.getTalent(talentId).dice;
   }
 
-  public getTalent(id: number) {
+  public getTalent(id: number): Carac {
     return (this.system as any as FacesActorSystem).talents[id];
   }
 
-  public async rollDialog(talentId: number) {
-    const dialog = new FacesActorRollDialog(this, talentId);
+  public getAttribute(id: number): Carac {
+    return (this.system as any as FacesActorSystem).attributes[id];
+  }
+
+  public async rollDialog() {
+    const dialog = new FacesActorRollDialog(this);
     dialog.render(true);
   }
 
-  public async rollTalent(talentId: number, difficulty: number) {
-    const talent = this.getTalent(talentId);
-    const value = talent.value + difficulty;
-    const roll = await new Roll(`1d100`).roll();
-    const success = roll.total <= value;
+  public async rollTest(
+    attributeId: number,
+    talentId: number,
+    difficulty: number,
+    modificator: number
+  ) {
+    const talent = talentId >= 0 ? this.getTalent(talentId).dice : 0;
+    const attribute =
+      attributeId >= 0 ? this.getAttribute(attributeId).dice : 0;
+    const value = difficulty + modificator;
+
+    const roll = await new Roll(`1d${attribute}+1d${talent}`).roll();
+    const success = roll.total >= value;
+    const degree = success ? Math.floor((roll.total - value) / 4) : 0;
     const content = await renderTemplate(
       `systems/${moduleId}/templates/chat/roll.hbs`,
       {
         actor: this,
-        talent: talent,
+        degree: degree,
         difficulty: difficulty,
+        modificator: modificator,
+        totalDifficulty: value,
         result: roll,
-        limit: value,
         success: success,
       }
     );

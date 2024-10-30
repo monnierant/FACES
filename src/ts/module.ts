@@ -15,6 +15,7 @@ import { setupSettings } from "./settings";
 import FacesActorDataModel from "./apps/datamodels/FacesActorDataModel";
 import MyNpcRoleActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
 import FacesActor from "./apps/documents/FacesActor";
+import { removeEmpty } from "./handlebarsHelpers/removeEmpty";
 
 declare global {
   interface DocumentClassConfig {
@@ -48,6 +49,7 @@ Hooks.once("init", () => {
   Handlebars.registerHelper("range", range);
   Handlebars.registerHelper("concat", concat);
   Handlebars.registerHelper("ternary", ternary);
+  Handlebars.registerHelper("removeEmpty", removeEmpty);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
     return a / b;

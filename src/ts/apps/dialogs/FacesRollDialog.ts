@@ -5,12 +5,7 @@ export default class FacesActorRollDialog extends Dialog {
   // ========================================
   // Constructor
   // ========================================
-  constructor(
-    actor: FacesActor,
-    talentId: number,
-    options: any = {},
-    data: any = {}
-  ) {
+  constructor(actor: FacesActor, options: any = {}, data: any = {}) {
     // Call the parent constructor
 
     const _options = {
@@ -38,14 +33,12 @@ export default class FacesActorRollDialog extends Dialog {
 
     // Set the actor
     this.actor = actor;
-    this.talentId = talentId;
   }
 
   // ========================================
   // Properties
   // ========================================
   public actor: FacesActor;
-  public talentId: number;
   // public roll: CowboyBebopRoll | undefined;
 
   // Define the template to use for this sheet
@@ -57,7 +50,6 @@ export default class FacesActorRollDialog extends Dialog {
   override getData() {
     let data: any = super.getData();
     data.actor = this.actor;
-    data.talent = this.actor.getTalent(this.talentId);
     data.difficultyLevels = difficultyLevels;
     return data;
   }
@@ -72,9 +64,20 @@ export default class FacesActorRollDialog extends Dialog {
       parseInt(
         html.find("#faces-dialog-modifier-difficulty").val() as string
       ) ?? 0;
-    await this.actor.rollTalent(
-      this.talentId,
-      isNaN(difficulty) ? 0 : difficulty
+    let modificator =
+      parseInt(
+        html.find("#faces-dialog-modifier-modificator").val() as string
+      ) ?? 0;
+    let talent =
+      parseInt(html.find("#faces-dialog-modifier-talent").val() as string) ?? 0;
+    let attribut =
+      parseInt(html.find("#faces-dialog-modifier-attribut").val() as string) ??
+      0;
+    await this.actor.rollTest(
+      isNaN(attribut) ? 0 : attribut,
+      isNaN(talent) ? 0 : talent,
+      isNaN(difficulty) ? 0 : difficulty,
+      isNaN(modificator) ? 0 : modificator
     );
   }
 }

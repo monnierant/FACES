@@ -9,8 +9,8 @@
           <header class="part-header flexrow">
             <span class="part-formula">{{ result.formula }} </span>
 
-            <span class="part-total"
-              >{{ talent.name }} : {{ talent.value }} + {{ difficulty }}
+            <span class="part-total">
+              {{ difficulty }} + {{ modificator }} = {{ totalDifficulty }}
             </span>
           </header>
           <h4
@@ -23,6 +23,10 @@
           "
           >
             {{ result.total }}
+            &nbsp;
+            {{#if (gt degree 0)}}
+            {{ degree }}°
+            {{/if}}
           </h4>
         </div>
       </section>

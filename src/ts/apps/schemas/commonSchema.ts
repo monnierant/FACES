@@ -3,7 +3,7 @@ import fields = foundry.data.fields;
 
 export interface Carac {
   name: string;
-  value: number;
+  dice: number;
 }
 
 export const caracSchema = () => ({

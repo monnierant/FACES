@@ -53,7 +53,7 @@ export default class FacesItemSheet extends ActorSheet {
   override activateListeners(html: JQuery) {
     super.activateListeners(html);
     // Roll handlers, click handlers, etc. would go here.
-    html.find(".faces-talent-roll").on("click", this._onRollDice.bind(this));
+    html.find(".faces-roll").on("click", this._onRollDice.bind(this));
     html.find(".faces-tab").on("click", this._onTabChange.bind(this));
 
     // Everything below here is only needed if the sheet is editable
@@ -81,8 +81,7 @@ export default class FacesItemSheet extends ActorSheet {
   // Event Handlers
   private async _onRollDice(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const talentId = event.currentTarget.dataset.talent;
-    await (this.actor as FacesActor).rollDialog(talentId);
+    await (this.actor as FacesActor).rollDialog();
   }
 
   private _onTabChange(event: JQuery.ClickEvent) {

@@ -1,19 +1,52 @@
 <div class="faces-dialog-content">
-  <h2>{{ talent.name }} ({{ talent.value }})</h2>
   <section class="faces-dialog-modifiers">
+    <div class="faces-dialog-modifier">
+      <label
+        for="faces-dialog-modifier-attribut"
+        >{{ localize 'FACES.Dialog.attribut' }}</label
+      >
+      <select id="faces-dialog-modifier-attribut" name="attribut">
+        <option selected value="-1"></option>
+        {{#each actor.system.attributes as |attribut|}}
+        <option value="{{ @index }}">{{ attribut.name }}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="faces-dialog-modifier">
+      <label
+        for="faces-dialog-modifier-talent"
+        >{{ localize 'FACES.Dialog.talent' }}</label
+      >
+      <select id="faces-dialog-modifier-talent" name="talent">
+        <option selected value="-1"></option>
+        {{#each (removeEmpty actor.system.talents) as |talent|}}
+        <option value="{{ @index }}">{{ talent.name }}</option>
+        {{/each}}
+      </select>
+    </div>
     <div class="faces-dialog-modifier">
       <label
         for="faces-dialog-modifier-difficulty"
         >{{ localize 'FACES.Global.difficulty' }}</label
       >
-      <select id="faces-dialog-modifier-difficulty" name="difficulty">
-        {{#each difficultyLevels as |difficulty|}}
-        <option value="{{ difficulty.value }}">
-          {{ localize (concat 'FACES.Dialog.difficulty.' difficulty.label) }}
-          ({{ difficulty.value }})
-        </option>
-        {{/each}}
-      </select>
+      <input
+        id="faces-dialog-modifier-difficulty"
+        name="difficulty"
+        type="number"
+        value="4"
+      />
+    </div>
+    <div class="faces-dialog-modifier">
+      <label
+        for="faces-dialog-modifier-modificator"
+        >{{ localize 'FACES.Dialog.modificator' }}</label
+      >
+      <input
+        id="faces-dialog-modifier-modificator"
+        name="modificator"
+        type="number"
+        value="0"
+      />
     </div>
   </section>
 </div>
