@@ -38,7 +38,7 @@
     },
     "node_modules/@league-of-foundry-developers/foundry-vtt-types": {
       "version": "12.331.0-beta",
-      "resolved": "git+ssh://git@github.com/League-of-Foundry-Developers/foundry-vtt-types.git#0a48df70dc4ae58ddd972019986752dc36fa051b",
+      "resolved": "git+ssh://git@github.com/League-of-Foundry-Developers/foundry-vtt-types.git#a5460a88089e8b6d4deae901fc44312fd9b9fdbe",
       "dev": true,
       "hasInstallScript": true,
       "license": "MIT",

@@ -1,7 +1,7 @@
-import { moduleId } from "./constants";
+import { moduleIdCore } from "./constants";
 
 export async function setupSettings(): Promise<any> {
-  await game.settings?.register(moduleId, "currency", {
+  await game.settings?.register(moduleIdCore, "currency", {
     name: "FACES.Settings.currency", // can also be an i18n key
     hint: "FACES.Settings.currencyHint", // can also be an i18n key
     scope: "world", // "world" = sync to db, "client" = local storage
@@ -11,7 +11,7 @@ export async function setupSettings(): Promise<any> {
     requiresReload: false, // when changing the setting, prompt the user to reload
   });
 
-  await game.settings?.register(moduleId, "multiCurrency", {
+  await game.settings?.register(moduleIdCore, "multiCurrency", {
     name: "FACES.Settings.multiCurrency", // can also be an i18n key
     hint: "FACES.Settings.multiCurrency", // can also be an i18n key
     scope: "world", // "world" = sync to db, "client" = local storage
@@ -21,7 +21,7 @@ export async function setupSettings(): Promise<any> {
     requiresReload: false, // when changing the setting, prompt the user to reload
   });
 
-  await game.settings?.register(moduleId, "currency2", {
+  await game.settings?.register(moduleIdCore, "currency2", {
     name: "FACES.Settings.currency2", // can also be an i18n key
     hint: "FACES.Settings.currency2Hint", // can also be an i18n key
     scope: "world", // "world" = sync to db, "client" = local storage
@@ -31,7 +31,7 @@ export async function setupSettings(): Promise<any> {
     requiresReload: false, // when changing the setting, prompt the user to reload
   });
 
-  await game.settings?.register(moduleId, "currency3", {
+  await game.settings?.register(moduleIdCore, "currency3", {
     name: "FACES.Settings.currency3", // can also be an i18n key
     hint: "FACES.Settings.currency3Hint", // can also be an i18n key
     scope: "world", // "world" = sync to db, "client" = local storage
@@ -41,7 +41,7 @@ export async function setupSettings(): Promise<any> {
     requiresReload: false, // when changing the setting, prompt the user to reload
   });
 
-  await game.settings?.register(moduleId, "extraGauge.enable", {
+  await game.settings?.register(moduleIdCore, "extraGauge.enable", {
     name: "FACES.Settings.extraGauge.enable", // can also be an i18n key
     hint: "FACES.Settings.extraGauge.enable", // can also be an i18n key
     scope: "world", // "world" = sync to db, "client" = local storage
@@ -51,7 +51,7 @@ export async function setupSettings(): Promise<any> {
     requiresReload: false, // when changing the setting, prompt the user to reload
   });
 
-  await game.settings?.register(moduleId, "extraGauge.text", {
+  await game.settings?.register(moduleIdCore, "extraGauge.text", {
     name: "FACES.Settings.extraGauge.text", // can also be an i18n key
     hint: "FACES.Settings.extraGauge.text", // can also be an i18n key
     scope: "world", // "world" = sync to db, "client" = local storage
