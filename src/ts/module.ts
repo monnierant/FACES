@@ -21,6 +21,14 @@ declare global {
   interface DocumentClassConfig {
     Actor: FacesActor;
   }
+  interface SettingConfig {
+    "faces.currency": string;
+    "faces.currency2": string;
+    "faces.currency3": string;
+    "faces.multiCurrency": boolean;
+    "faces.extraGauge.text": string;
+    "faces.extraGauge.enable": boolean;
+  }
 
   // interface DataModelConfig {
   //   Actor: {

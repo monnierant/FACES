@@ -1,4 +1,10 @@
-import { moduleId, difficultyLevels, tabs, dices } from "../../constants";
+import {
+  moduleId,
+  difficultyLevels,
+  tabs,
+  dices,
+  moduleIdCore,
+} from "../../constants";
 import FacesActor from "../documents/FacesActor";
 import { StatHelpers } from "../helpers/StatHelpers";
 
@@ -25,15 +31,15 @@ export default class FacesItemSheet extends ActorSheet {
     data.dices = dices;
 
     data.currency = {
-      c1: game.settings?.get(moduleId, "currency"),
-      c2: game.settings?.get(moduleId, "currency2"),
-      c3: game.settings?.get(moduleId, "currency3"),
-      multi: game.settings?.get(moduleId, "multiCurrency"),
+      c1: game.settings?.get(moduleIdCore, "currency"),
+      c2: game.settings?.get(moduleIdCore, "currency2"),
+      c3: game.settings?.get(moduleIdCore, "currency3"),
+      multi: game.settings?.get(moduleIdCore, "multiCurrency"),
     };
 
     data.extraGauge = {
-      text: game.settings?.get(moduleId, "extraGauge.text"),
-      enabled: game.settings?.get(moduleId, "extraGauge.enable"),
+      text: game.settings?.get(moduleIdCore, "extraGauge.text"),
+      enabled: game.settings?.get(moduleIdCore, "extraGauge.enable"),
     };
 
     data.difficultyLevels = difficultyLevels;
@@ -41,7 +47,7 @@ export default class FacesItemSheet extends ActorSheet {
     if (this.actor.system.type === "character") {
       data.health = StatHelpers.calculateActorHealth(this.actor as FacesActor);
       data.mana = StatHelpers.calculateActorMana(this.actor as FacesActor);
-      if (game.settings?.get(moduleId, "extraGauge.enable")) {
+      if (game.settings?.get(moduleIdCore, "extraGauge.enable")) {
         data.extra = StatHelpers.calculateActorExtra(this.actor as FacesActor);
       }
     }
@@ -74,7 +80,7 @@ export default class FacesItemSheet extends ActorSheet {
   private activateListenersPC(html: JQuery) {
     html.find(".faces-xp").on("click", this._onUpdateXp.bind(this));
     html.find(".faces-mana-update").on("click", this._onUpdateMana.bind(this));
-    if (game.settings?.get(moduleId, "extraGauge.enable")) {
+    if (game.settings?.get(moduleIdCore, "extraGauge.enable")) {
       html
         .find(".faces-extra-update")
         .on("click", this._onUpdateExtra.bind(this));

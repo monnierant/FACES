@@ -27,3 +27,4 @@ export const tabs = {
 export const attributeList = ["FOR", "AGI", "CAR", "SPI", "SEN"];
 
 export const moduleId: string = id;
+export const moduleIdCore = id as "faces";
