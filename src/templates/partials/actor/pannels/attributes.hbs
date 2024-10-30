@@ -30,6 +30,9 @@
   <h3>{{ localize 'FACES.Actor.weapons' }}</h3>
   <section class="faces-weapons">
     <div class="faces-weapon">
+      <div class="faces-weapon-roll-icon faces-weapon-roll-icon-greyed">
+        <i class="fa-solid fa-dice"></i>
+      </div>
       <div class="faces-weapon-name">
         {{ localize 'FACES.Actor.weapon.name' }}
       </div>
@@ -42,6 +45,9 @@
     </div>
     {{#each actor.system.meleeWeapons as |weapon|}}
     <div class="faces-weapon">
+      <a class="faces-weapon-roll" data-type="melee" data-id="{{ @index }}">
+        <i class="fa-solid fa-dice"></i>
+      </a>
       <input
         class="faces-weapon-name"
         name="system.meleeWeapons.{{ @index }}.name"
@@ -64,6 +70,9 @@
     </div>
     {{/each}}
     <div class="faces-weapon">
+      <div class="faces-weapon-roll-icon faces-weapon-roll-icon-greyed">
+        <i class="fa-solid fa-dice"></i>
+      </div>
       <div class="faces-weapon-name">
         {{ localize 'FACES.Actor.weapon.name' }}
       </div>
@@ -79,6 +88,11 @@
     </div>
     {{#each actor.system.rangedWeapons as |weapon|}}
     <div class="faces-weapon">
+      <div class="faces-weapon-roll-icon">
+        <a class="faces-weapon-roll" data-type="ranged" data-id="{{ @index }}">
+          <i class="fa-solid fa-dice"></i>
+        </a>
+      </div>
       <input
         class="faces-weapon-name"
         name="system.rangedWeapons.{{ @index }}.name"

@@ -1,3 +1,5 @@
+{{ log weapon }}
+
 <div class="faces-dialog-content">
   <section class="faces-dialog-modifiers">
     <div class="faces-dialog-modifier">
@@ -48,6 +50,20 @@
         value="0"
       />
     </div>
+    {{#if weapon}}
+    <div class="faces-dialog-weapon">
+      <label
+        for="faces-dialog-modifier-weapon"
+        >{{ localize 'FACES.Dialog.weapon' }}</label
+      >
+      <input
+        id="faces-dialog-modifier-weapon"
+        name="weapon"
+        type="number"
+        value="0"
+      />
+    </div>
+    {{/if}}
   </section>
 </div>
 <div class="dialog-buttons">

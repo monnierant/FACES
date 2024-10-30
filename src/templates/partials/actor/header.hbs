@@ -130,7 +130,7 @@
       <div class="faces-attributes">
         {{#each actor.system.attributes as |attribute|}}
         <div class="faces-attribute">
-          <div>{{ attribute.name }}</div>
+          <div>{{ localize (concat 'FACES.Actor.stats.' attribute.name) }}</div>
           <input
             name="system.attributes.{{ @index }}.name"
             type="hidden"

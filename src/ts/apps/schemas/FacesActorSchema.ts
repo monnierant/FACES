@@ -13,6 +13,8 @@ import {
   contactSchema,
   Experience,
   experienceSchema,
+  Armor,
+  armorSchema,
 } from "./commonSchema";
 
 export interface FacesActorSystem {
@@ -25,6 +27,7 @@ export interface FacesActorSystem {
   assets: Asset[];
   meleeWeapons: Weapon[];
   rangedWeapons: Weapon[];
+  armors: Armor[];
   contacts: Contact[];
   bag: string;
   bag2: string;
@@ -33,6 +36,19 @@ export interface FacesActorSystem {
   money2: number;
   money3: number;
   experience: Experience;
+
+  profile: string;
+  species: string;
+  limit: string;
+  age: string;
+  height: string;
+  weight: string;
+  eyes: string;
+  hair: string;
+  sex: string;
+  signs: string;
+  background: string;
+  notes: string;
 }
 
 export const facesActorSchema = {
@@ -69,6 +85,7 @@ export const facesActorSchema = {
       damage: 0,
       range: 0,
       special: "",
+      isMelee: true,
     }),
   }),
 
@@ -77,6 +94,15 @@ export const facesActorSchema = {
       name: "",
       damage: 0,
       range: 0,
+      special: "",
+      isMelee: false,
+    }),
+  }),
+
+  armors: new fields.ArrayField(new fields.SchemaField(armorSchema()), {
+    initial: Array(defaultLenght.armor).fill({
+      name: "",
+      defense: 0,
       special: "",
     }),
   }),
@@ -104,6 +130,19 @@ export const facesActorSchema = {
       spent: 0,
     },
   }),
+
+  profile: new fields.StringField({ initial: "" }),
+  species: new fields.StringField({ initial: "" }),
+  limit: new fields.StringField({ initial: "" }),
+  age: new fields.StringField({ initial: "" }),
+  height: new fields.StringField({ initial: "" }),
+  weight: new fields.StringField({ initial: "" }),
+  eyes: new fields.StringField({ initial: "" }),
+  hair: new fields.StringField({ initial: "" }),
+  sex: new fields.StringField({ initial: "" }),
+  signs: new fields.StringField({ initial: "" }),
+  background: new fields.StringField({ initial: "" }),
+  notes: new fields.StringField({ initial: "" }),
 };
 
 export type FacesActorSchema = typeof facesActorSchema;

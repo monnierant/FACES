@@ -31,11 +31,24 @@ export const assetSchema = () => ({
   effect: new fields.StringField({ initial: "" }),
 });
 
+export interface Armor {
+  name: string;
+  defense: number;
+  special: string;
+}
+
+export const armorSchema = () => ({
+  name: new fields.StringField({ initial: "" }),
+  defense: new fields.NumberField({ initial: 0 }),
+  special: new fields.StringField({ initial: "" }),
+});
+
 export interface Weapon {
   name: string;
   damage: number;
   range: number;
   special: string;
+  isMelee: boolean;
 }
 
 export const weaponSchema = () => ({
@@ -43,6 +56,7 @@ export const weaponSchema = () => ({
   damage: new fields.NumberField({ initial: 0 }),
   range: new fields.NumberField({ initial: 0 }),
   special: new fields.StringField({ initial: "" }),
+  isMelee: new fields.BooleanField({ initial: false }),
 });
 
 export interface Contact {

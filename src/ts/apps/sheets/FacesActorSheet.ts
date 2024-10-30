@@ -54,6 +54,9 @@ export default class FacesItemSheet extends ActorSheet {
     super.activateListeners(html);
     // Roll handlers, click handlers, etc. would go here.
     html.find(".faces-roll").on("click", this._onRollDice.bind(this));
+    html
+      .find(".faces-weapon-roll")
+      .on("click", this._onRollWeaponDice.bind(this));
     html.find(".faces-tab").on("click", this._onTabChange.bind(this));
 
     // Everything below here is only needed if the sheet is editable
@@ -82,6 +85,13 @@ export default class FacesItemSheet extends ActorSheet {
   private async _onRollDice(event: JQuery.ClickEvent) {
     event.preventDefault();
     await (this.actor as FacesActor).rollDialog();
+  }
+
+  private async _onRollWeaponDice(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const type = event.currentTarget.dataset.type;
+    const id = parseInt(event.currentTarget.dataset.id) ?? 0;
+    await (this.actor as FacesActor).rollWeaponDialog(type === "melee", id);
   }
 
   private _onTabChange(event: JQuery.ClickEvent) {

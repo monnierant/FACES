@@ -4,6 +4,12 @@
       class="cowboy-dice-tooltip dice-tooltip expanded"
       style="display: block"
     >
+      {{#if weapon}}
+      <div>
+        {{ weapon.name }} :
+        {{ localize (concat 'FACES.Global.dices.' weapon.damage) }}
+      </div>
+      {{/if}}
       <section class="tooltip-part">
         <div class="dice">
           <header class="part-header flexrow">
@@ -28,6 +34,23 @@
             {{ degree }}°
             {{/if}}
           </h4>
+          {{#if weapon}}
+          {{#if success}}
+          {{localize 'FACES.Actor.damage'}} : {{ damageResult }} +
+          {{ damageBonus }}
+          <h4
+            class="dice-total
+            {{#if (gt damage 0)}}
+            success
+            {{else}}
+            failure
+            {{/if}}
+            "
+          >
+            {{ damage }}
+          </h4>
+          {{/if}}
+          {{/if}}
         </div>
       </section>
     </div>

@@ -20,6 +20,7 @@
       "talent": "Talent",
       "attribut": "Attribute",
       "modificator": "Modificator",
+      "weapon": "Weapon Bonus",
       "difficulty": {
         "easy": "Easy",
         "medium": "Medium",
@@ -42,6 +43,20 @@
       "inventory": "Inventory",
       "vice": "Vice",
       "experience": "XP",
+      "appearance": "Appearance",
+      "profile": "Profile",
+      "species": "Species",
+      "limit": "Limit",
+      "age": "Age",
+      "height": "Height",
+      "weight": "Weight",
+      "hair": "Hair",
+      "eyes": "Eyes",
+      "sex": "Sex",
+      "signs": "Signs",
+      "background": "Background",
+      "damage": "Damage",
+      "armors": "Protections",
       "weapon": {
         "name": "Name",
         "range": "Range",
@@ -50,6 +65,8 @@
       },
       "placeholder": {
         "asset": "Asset",
+        "name": "Name",
+        "special": "Special",
         "effect": "Effect"
       },
       "tabs": {
@@ -57,7 +74,15 @@
         "talents": "Talents",
         "skills": "Skills",
         "inventory": "Inventory",
+        "histo": "History",
         "notes": "Notes"
+      },
+      "stats": {
+        "FOR": "FOR",
+        "AGI": "AGI",
+        "CAR": "CAR",
+        "SPI": "SPI",
+        "SEN": "SEN"
       }
     }
   }

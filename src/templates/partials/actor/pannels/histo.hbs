@@ -1,0 +1,113 @@
+<div
+  class="
+{{#if (not display)}}
+  hidden
+{{/if}}"
+>
+  <div class="faces-histo">
+    <div class="faces-histo-collumn-a">
+      <h3>{{ localize 'FACES.Actor.profile' }}</h3>
+      <section class="faces-profile-section">
+        <div class="faces-info">
+          <label>{{ localize 'FACES.Actor.profile' }}</label>
+          <input
+            name="system.profile"
+            type="text"
+            value="{{ actor.system.profile }}"
+          />
+        </div>
+        <div class="faces-info-collumn">
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.species' }}</label>
+            <input
+              name="system.species"
+              type="text"
+              value="{{ actor.system.species }}"
+            />
+          </div>
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.limit' }}</label>
+            <input
+              name="system.limit"
+              type="text"
+              value="{{ actor.system.limit }}"
+            />
+          </div>
+        </div>
+      </section>
+      {{!-- Appearance --}}
+      <h3>{{ localize 'FACES.Actor.appearance' }}</h3>
+      <section class="faces-appearance-section">
+        <div class="faces-appearance-minisection">
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.age' }}</label>
+            <input
+              name="system.age"
+              type="text"
+              value="{{ actor.system.age }}"
+            />
+          </div>
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.height' }}</label>
+            <input
+              name="system.height"
+              type="text"
+              value="{{ actor.system.height }}"
+            />
+          </div>
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.weight' }}</label>
+            <input
+              name="system.weight"
+              type="text"
+              value="{{ actor.system.weight }}"
+            />
+          </div>
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.eyes' }}</label>
+            <input
+              name="system.eyes"
+              type="text"
+              value="{{ actor.system.eyes }}"
+            />
+          </div>
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.hair' }}</label>
+            <input
+              name="system.hair"
+              type="text"
+              value="{{ actor.system.hair }}"
+            />
+          </div>
+          <div class="faces-info">
+            <label>{{ localize 'FACES.Actor.sex' }}</label>
+            <input
+              name="system.sex"
+              type="text"
+              value="{{ actor.system.sex }}"
+            />
+          </div>
+        </div>
+        <div class="faces-signs">
+          <label>{{ localize 'FACES.Actor.signs' }}</label>
+          <textarea name="system.signs" type="text" rows="5"
+            >{{ actor.system.signs }}
+          </textarea>
+        </div>
+      </section>
+    </div>
+    <div class="faces-histo-collumn-b">
+      <h3>{{ localize 'FACES.Actor.background' }}</h3>
+      <section class="faces-background-section">
+        <div class="faces-background">
+          <textarea
+            class="faces-background-text"
+            name="system.background"
+            rows="26"
+            >{{ actor.system.background }}
+          </textarea>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@
       "talent": "Talent",
       "attribut": "Attribut",
       "modificator": "Modificateur",
+      "weapon": "Bonus d'arme",
       "difficulty": {
         "easy": "Facile",
         "medium": "Moyen",
@@ -41,7 +42,21 @@
       "contacts": "Contacts",
       "inventory": "Inventaire",
       "vice": "Travers",
+      "appearance": "Apparence",
       "experience": "XP",
+      "profile": "Profil",
+      "species": "Espèce",
+      "limit": "Limite",
+      "age": "Âge",
+      "height": "Taille",
+      "weight": "Poids",
+      "hair": "Cheveux",
+      "eyes": "Yeux",
+      "sex": "Sexe",
+      "signs": "Signes",
+      "background": "Background",
+      "damage": "Damage",
+      "armors": "Protections",
       "weapon": {
         "name": "Nom",
         "range": "Portée",
@@ -50,6 +65,8 @@
       },
       "placeholder": {
         "asset": "Atout",
+        "name": "Nom",
+        "special": "Spécial",
         "effect": "Effet"
       },
       "tabs": {
@@ -57,7 +74,15 @@
         "talents": "Talents",
         "skills": "Compétences",
         "inventory": "Inventaire",
+        "histo": "Historique",
         "notes": "Notes"
+      },
+      "stats": {
+        "FOR": "FOR",
+        "AGI": "AGI",
+        "CAR": "CAR",
+        "SPI": "ESP",
+        "SEN": "SEN"
       }
     }
   }

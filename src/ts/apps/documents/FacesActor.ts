@@ -3,7 +3,7 @@ import { FacesActorSystem } from "../schemas/FacesActorSchema";
 import FacesActorRollDialog from "../dialogs/FacesRollDialog";
 import { moduleId } from "../../constants";
 import { StatHelpers } from "../helpers/StatHelpers";
-import { Carac } from "../schemas/commonSchema";
+import { Carac, Weapon } from "../schemas/commonSchema";
 
 export default class FacesActor extends Actor {
   public constructor(data: any, context: any) {
@@ -27,11 +27,22 @@ export default class FacesActor extends Actor {
     dialog.render(true);
   }
 
+  public async rollWeaponDialog(isMelee: boolean, weaponId: number) {
+    const system = this.system as any as FacesActorSystem;
+    const weapon = isMelee
+      ? system.meleeWeapons[weaponId]
+      : system.rangedWeapons[weaponId];
+    const dialog = new FacesActorRollDialog(this, weapon);
+    dialog.render(true);
+  }
+
   public async rollTest(
     attributeId: number,
     talentId: number,
     difficulty: number,
-    modificator: number
+    modificator: number,
+    weapon: Weapon | undefined,
+    weaponBonus: number
   ) {
     const talent = talentId >= 0 ? this.getTalent(talentId).dice : 0;
     const attribute =
@@ -41,6 +52,12 @@ export default class FacesActor extends Actor {
     const roll = await new Roll(`1d${attribute}+1d${talent}`).roll();
     const success = roll.total >= value;
     const degree = success ? Math.floor((roll.total - value) / 4) : 0;
+    let damage = 0;
+    if (success && weapon !== undefined) {
+      const damageRoll = await new Roll(`1d${weapon.damage}`).roll();
+      damage = damageRoll.total + weaponBonus;
+    }
+
     const content = await renderTemplate(
       `systems/${moduleId}/templates/chat/roll.hbs`,
       {
@@ -51,6 +68,8 @@ export default class FacesActor extends Actor {
         totalDifficulty: value,
         result: roll,
         success: success,
+        weapon: weapon,
+        damage: damage,
       }
     );
 

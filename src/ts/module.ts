@@ -37,6 +37,7 @@ async function preloadTemplates(): Promise<any> {
     `systems/${moduleId}/templates/partials/actor/hpmpbar.hbs`,
     `systems/${moduleId}/templates/partials/actor/pannels/attributes.hbs`,
     `systems/${moduleId}/templates/partials/actor/pannels/inventory.hbs`,
+    `systems/${moduleId}/templates/partials/actor/pannels/histo.hbs`,
   ];
 
   return loadTemplates(templatePaths);
