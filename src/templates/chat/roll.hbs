@@ -13,10 +13,12 @@
       <section class="tooltip-part">
         <div class="dice">
           <header class="part-header flexrow">
-            <span class="part-formula">{{ result.formula }} </span>
+            <span class="part-formula"
+              >{{ roll.formula }} + {{ modificator }}
+            </span>
 
             <span class="part-total">
-              {{ difficulty }} + {{ modificator }} = {{ totalDifficulty }}
+              {{ difficulty }}
             </span>
           </header>
           <h4
@@ -28,7 +30,7 @@
           {{/if}}
           "
           >
-            {{ result.total }}
+            {{ result }}
             &nbsp;
             {{#if (gt degree 0)}}
             {{ degree }}°

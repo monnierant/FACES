@@ -45,9 +45,11 @@
     </div>
     {{#each actor.system.meleeWeapons as |weapon|}}
     <div class="faces-weapon">
-      <a class="faces-weapon-roll" data-type="melee" data-id="{{ @index }}">
-        <i class="fa-solid fa-dice"></i>
-      </a>
+      <div class="faces-weapon-roll-icon">
+        <a class="faces-weapon-roll" data-type="melee" data-id="{{ @index }}">
+          <i class="fa-solid fa-dice"></i>
+        </a>
+      </div>
       <input
         class="faces-weapon-name"
         name="system.meleeWeapons.{{ @index }}.name"

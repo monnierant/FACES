@@ -47,16 +47,20 @@ export default class FacesActor extends Actor {
     const talent = talentId >= 0 ? this.getTalent(talentId).dice : 0;
     const attribute =
       attributeId >= 0 ? this.getAttribute(attributeId).dice : 0;
-    const value = difficulty + modificator;
 
     const roll = await new Roll(`1d${attribute}+1d${talent}`).roll();
-    const success = roll.total >= value;
-    const degree = success ? Math.floor((roll.total - value) / 4) : 0;
+    const result = roll.total + modificator;
+    const success = result >= difficulty;
+    const degree = success ? Math.floor((result - difficulty) / 4) : 0;
     let damage = 0;
     if (success && weapon !== undefined) {
       const damageRoll = await new Roll(`1d${weapon.damage}`).roll();
       damage = damageRoll.total + weaponBonus;
     }
+
+    const damagecst = damage;
+    const damageBonus = weaponBonus;
+    const damageResult = damagecst - damageBonus;
 
     const content = await renderTemplate(
       `systems/${moduleId}/templates/chat/roll.hbs`,
@@ -65,11 +69,13 @@ export default class FacesActor extends Actor {
         degree: degree,
         difficulty: difficulty,
         modificator: modificator,
-        totalDifficulty: value,
-        result: roll,
+        roll: roll,
+        result: result,
         success: success,
         weapon: weapon,
-        damage: damage,
+        damage: damagecst,
+        damageResult: damageResult,
+        damageBonus: damageBonus,
       }
     );
 
