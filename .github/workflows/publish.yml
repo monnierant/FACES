@@ -39,7 +39,7 @@ jobs:
           MODULE_VERSION: ${{steps.get_version.outputs.version-without-v}}
           GH_PROJECT: ${{github.repository}}
           GH_TAG: ${{github.event.release.tag_name}}
-        run: tsc
+        run: npx tsc
 
       - name: Run Vite build
         env:
