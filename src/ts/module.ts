@@ -13,7 +13,7 @@ import { partial } from "./handlebarsHelpers/partial";
 import { setupSettings } from "./settings";
 
 import FacesActorDataModel from "./apps/datamodels/FacesActorDataModel";
-import MyNpcRoleActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
+// import MyNpcRoleActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
 import FacesActor from "./apps/documents/FacesActor";
 import { removeEmpty } from "./handlebarsHelpers/removeEmpty";
 
@@ -65,7 +65,7 @@ Hooks.once("init", () => {
   });
 
   CONFIG.Actor.dataModels.character = FacesActorDataModel;
-  CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
+  // CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
   CONFIG.Actor.documentClass = FacesActor;
 
   Actors.unregisterSheet("core", ActorSheet);
