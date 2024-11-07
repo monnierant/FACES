@@ -16,6 +16,9 @@ import FacesActorDataModel from "./apps/datamodels/FacesActorDataModel";
 // import MyNpcRoleActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
 import FacesActor from "./apps/documents/FacesActor";
 import { removeEmpty } from "./handlebarsHelpers/removeEmpty";
+import FacesRollsRegister from "./apps/rolls/FacesRollsRegister";
+import { join } from "./handlebarsHelpers/join";
+import { filterdice } from "./handlebarsHelpers/filterdice";
 
 declare global {
   interface DocumentClassConfig {
@@ -54,6 +57,8 @@ async function preloadTemplates(): Promise<any> {
 Hooks.once("init", () => {
   console.log(`Initializing ${moduleId}`);
 
+  Handlebars.registerHelper("join", join);
+  Handlebars.registerHelper("filterdice", filterdice);
   Handlebars.registerHelper("partial", partial);
   Handlebars.registerHelper("range", range);
   Handlebars.registerHelper("concat", concat);
@@ -73,4 +78,19 @@ Hooks.once("init", () => {
 
   preloadTemplates();
   setupSettings();
+
+  Hooks.on(
+    "renderChatMessage",
+    (app: Application, html: JQuery, data: any): void => {
+      if (app === undefined) {
+        console.log("app is undefined");
+      }
+
+      if (data === undefined) {
+        console.log("data is undefined");
+      }
+
+      FacesRollsRegister.registerTriggers(html);
+    }
+  );
 });

@@ -1,0 +1,38 @@
+<div class="dice-roll">
+  <div class="dice-result">
+    <div
+      class="cowboy-dice-tooltip dice-tooltip expanded"
+      style="display: block"
+    >
+      {{#if weapon}}
+      <div>
+        {{ weapon.name }} :
+        {{ localize (concat 'FACES.Global.dices.' weapon.damage) }}
+      </div>
+      {{/if}}
+      <section class="tooltip-part">
+        <div class="dice">
+          <header class="part-header flexrow">
+            <span class="part-formula"
+              >{{ roll.formula }} + {{ weaponBonus }}
+            </span>
+            <span class="part-total">
+              <i class="fa-solid fa-burst"></i>
+            </span>
+          </header>
+          <h4
+            class="dice-total
+          {{#if success}}
+          success
+          {{else}}
+          failure
+          {{/if}}
+          "
+          >
+            {{ result }}
+          </h4>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,5 @@
 import { difficultyLevels, moduleId } from "../../constants";
 import FacesActor from "../documents/FacesActor";
-import { Weapon } from "../schemas/commonSchema";
 
 export default class FacesActorRollDialog extends Dialog {
   // ========================================
@@ -8,7 +7,8 @@ export default class FacesActorRollDialog extends Dialog {
   // ========================================
   constructor(
     actor: FacesActor,
-    weapon: Weapon | undefined = undefined,
+    weaponId: number | undefined = undefined,
+    weaponIsMelee: boolean = true,
     options: any = {},
     data: any = {}
   ) {
@@ -39,7 +39,8 @@ export default class FacesActorRollDialog extends Dialog {
 
     // Set the actor
     this.actor = actor;
-    this.weapon = weapon;
+    this.weaponId = weaponId;
+    this.weaponIsMelee = weaponIsMelee;
   }
 
   static override get defaultOptions() {
@@ -53,7 +54,8 @@ export default class FacesActorRollDialog extends Dialog {
   // Properties
   // ========================================
   public actor: FacesActor;
-  public weapon: Weapon | undefined;
+  public weaponId: number | undefined;
+  public weaponIsMelee: boolean;
   // public roll: CowboyBebopRoll | undefined;
 
   // Define the template to use for this sheet
@@ -65,7 +67,7 @@ export default class FacesActorRollDialog extends Dialog {
   override getData() {
     let data: any = super.getData();
     data.actor = this.actor;
-    data.weapon = this.weapon;
+    data.weapon = this.weaponId !== undefined;
     data.difficultyLevels = difficultyLevels;
     return data;
   }
@@ -90,7 +92,7 @@ export default class FacesActorRollDialog extends Dialog {
       parseInt(html.find("#faces-dialog-modifier-attribut").val() as string) ??
       0;
     let weaponBonus = 0;
-    if (this.weapon !== undefined) {
+    if (this.weaponId !== undefined) {
       weaponBonus =
         parseInt(
           html.find("#faces-dialog-modifier-weaponBonus").val() as string
@@ -102,7 +104,9 @@ export default class FacesActorRollDialog extends Dialog {
       isNaN(talent) ? 0 : talent,
       isNaN(difficulty) ? 0 : difficulty,
       isNaN(modificator) ? 0 : modificator,
-      this.weapon,
+      this.weaponId,
+      this.weaponIsMelee,
+
       isNaN(weaponBonus) ? 0 : weaponBonus
     );
   }
