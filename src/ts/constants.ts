@@ -17,6 +17,7 @@ export const difficultyLevels = [
   { value: -40, label: "impossible" },
 ];
 
+// export const dices = [0, 1, 2, 4, 6, 8, 10, 12, 20];
 export const dices = [0, 4, 6, 8, 10, 12, 20];
 
 export const tabs = {

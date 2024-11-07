@@ -13,7 +13,7 @@ export async function setupSettings(): Promise<any> {
 
   await game.settings?.register(moduleIdCore, "multiCurrency", {
     name: "FACES.Settings.multiCurrency", // can also be an i18n key
-    hint: "FACES.Settings.multiCurrency", // can also be an i18n key
+    hint: "FACES.Settings.multiCurrencyHint", // can also be an i18n key
     scope: "world", // "world" = sync to db, "client" = local storage
     config: true, // false if you dont want it to show in module config
     type: Boolean, // Number, Boolean, String, or even a custom class or DataModel

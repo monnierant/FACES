@@ -27,13 +27,94 @@ export default class FacesActor extends Actor {
     dialog.render(true);
   }
 
-  public async rollWeaponDialog(isMelee: boolean, weaponId: number) {
+  public getWeapon(id: number, isMelee: boolean): Weapon {
     const system = this.system as any as FacesActorSystem;
-    const weapon = isMelee
-      ? system.meleeWeapons[weaponId]
-      : system.rangedWeapons[weaponId];
-    const dialog = new FacesActorRollDialog(this, weapon);
+    return isMelee ? system.meleeWeapons[id] : system.rangedWeapons[id];
+  }
+
+  public async rollWeaponDialog(isMelee: boolean, weaponId: number) {
+    const dialog = new FacesActorRollDialog(this, weaponId, isMelee);
     dialog.render(true);
+  }
+
+  public async rollDamage(
+    weaponId: number,
+    weaponBonus: number,
+    weaponIsMelee: boolean
+  ) {
+    const weapon = this.getWeapon(weaponId, weaponIsMelee);
+    const roll = await new Roll(`1d${weapon.damage}`).roll();
+
+    const damageResult = roll.total;
+    const damageBonus = weaponBonus;
+    const damage = damageResult + damageBonus;
+
+    const content = await renderTemplate(
+      `systems/${moduleId}/templates/chat/damage.hbs`,
+      {
+        actor: this,
+        roll: roll,
+        weapon: weapon,
+        weaponId: weaponId,
+        weaponIsMelee: weaponIsMelee,
+        weaponBonus: weaponBonus,
+        result: damage,
+      }
+    );
+
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: content,
+    });
+  }
+
+  public async rollExplode(
+    dice: number,
+    difficulty: number,
+    previousResult: number,
+    weaponId: number | undefined,
+    weaponIsMelee: boolean,
+    weaponBonus: number,
+    remainingExplodes: number[]
+  ) {
+    const roll = await new Roll(`1d${dice}`).roll();
+
+    roll.dice.forEach((d) => {
+      if (d.results[0].result == d.faces) {
+        remainingExplodes.push(d.faces);
+      }
+    });
+
+    const result = roll.total + previousResult;
+    const success = result >= difficulty && roll.total != 1;
+    const degree = success ? Math.floor((result - difficulty) / 4) : 0;
+
+    const content = await renderTemplate(
+      `systems/${moduleId}/templates/chat/explode.hbs`,
+      {
+        actor: this,
+        degree: degree,
+        difficulty: difficulty,
+        roll: roll,
+        result: result,
+        success: success,
+        faill: roll.total == 1,
+        previousResult: previousResult,
+        weapon:
+          weaponId !== undefined
+            ? this.getWeapon(weaponId, weaponIsMelee)
+            : undefined,
+        weaponId: weaponId,
+        weaponIsMelee: weaponIsMelee,
+        weaponBonus: weaponBonus,
+        canExplodes: remainingExplodes,
+      }
+    );
+
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: content,
+    });
   }
 
   public async rollTest(
@@ -41,7 +122,8 @@ export default class FacesActor extends Actor {
     talentId: number,
     difficulty: number,
     modificator: number,
-    weapon: Weapon | undefined,
+    weaponId: number | undefined,
+    weaponIsMelee: boolean,
     weaponBonus: number
   ) {
     const talent = talentId >= 0 ? this.getTalent(talentId).dice : 0;
@@ -49,18 +131,25 @@ export default class FacesActor extends Actor {
       attributeId >= 0 ? this.getAttribute(attributeId).dice : 0;
 
     const roll = await new Roll(`1d${attribute}+1d${talent}`).roll();
-    const result = roll.total + modificator;
-    const success = result >= difficulty;
-    const degree = success ? Math.floor((result - difficulty) / 4) : 0;
-    let damage = 0;
-    if (success && weapon !== undefined) {
-      const damageRoll = await new Roll(`1d${weapon.damage}`).roll();
-      damage = damageRoll.total + weaponBonus;
+
+    let double = 0;
+    // double => +1
+    if (roll.dice.length == 2) {
+      if (roll.dice[0].results[0].result == roll.dice[1].results[0].result) {
+        double = 1;
+      }
     }
 
-    const damagecst = damage;
-    const damageBonus = weaponBonus;
-    const damageResult = damagecst - damageBonus;
+    let canExplodes: number[] = [];
+    roll.dice.forEach((d) => {
+      if (d.results[0].result == d.faces) {
+        canExplodes.push(d.faces);
+      }
+    });
+
+    const result = roll.total + modificator + double;
+    const success = result >= difficulty;
+    const degree = success ? Math.floor((result - difficulty) / 4) : 0;
 
     const content = await renderTemplate(
       `systems/${moduleId}/templates/chat/roll.hbs`,
@@ -72,10 +161,15 @@ export default class FacesActor extends Actor {
         roll: roll,
         result: result,
         success: success,
-        weapon: weapon,
-        damage: damagecst,
-        damageResult: damageResult,
-        damageBonus: damageBonus,
+        weapon:
+          weaponId !== undefined
+            ? this.getWeapon(weaponId, weaponIsMelee)
+            : undefined,
+        weaponId: weaponId,
+        weaponIsMelee: weaponIsMelee,
+        weaponBonus: weaponBonus,
+        double: double,
+        canExplodes: canExplodes,
       }
     );
 

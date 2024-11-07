@@ -14,7 +14,16 @@
     },
     "Settings": {
       "currency": "Monnaie",
-      "currencyHint": "Monnaie utilisée dans le jeu"
+      "currencyHint": "Monnaie utilisée dans le jeu",
+      "multiCurrency": "Diviser en 3 valeurs de monnaie comme par exmple (PO, PA, PC)",
+      "currency2": "2ème Monnaie",
+      "currency2Hint": "2ème Monnaie utilisée dans le jeu (seulement si plusieurs monnaies)",
+      "currency3": "3ème Monnaie",
+      "currency3Hint": "3ème Monnaie utilisée dans le jeu (seulement si plusieurs monnaies)",
+      "extraGauge": {
+        "enable": "Activer la jauge supplémentaire",
+        "text": "Nom de la jauge supplémentaire"
+      }
     },
     "Dialog": {
       "talent": "Talent",
