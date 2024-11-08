@@ -1,0 +1,87 @@
+<div
+  class="
+{{#if (not display)}}
+  hidden
+{{/if}}
+"
+>
+  <section class="faces-spells-section">
+    {{#each actor.system.spells as |spell|}}
+    <div class="faces-spell">
+      <div class="faces-spell-name">
+        <a
+          class="faces-spell-move"
+          data-direction="-1"
+          data-spell="{{ @index }}"
+        >
+          <i class="fa-solid fa-caret-left"></i>
+        </a>
+        <input
+          id="spell-name-{{ @index }}"
+          type="text"
+          name="system.spells.{{ @index }}.name"
+          value="{{ spell.name }}"
+          placeholder="{{ localize 'FACES.Actor.spell.name' }}"
+        />
+        <a
+          class="faces-spell-move"
+          data-direction="1"
+          data-spell="{{ @index }}"
+        >
+          <i class="fa-solid fa-caret-right"></i>
+        </a>
+      </div>
+      <div class="faces-spell-type">
+        <label
+          for="spell-difficulty-{{ @index }}"
+          >{{ localize 'FACES.Actor.spell.difficulty' }}</label
+        >
+        <input
+          id="spell-difficulty-{{ @index }}"
+          name="system.spells.{{ @index }}.difficulty"
+          type="{{ ternary (eq spell.type 'trick') 'hidden' 'number' }}"
+          value="{{ spell.difficulty }}"
+        />
+
+        <a class="faces-spell-delete" data-spell="{{ @index }}">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </div>
+
+      <div class="faces-spell-infos">
+        <div
+          class="spell-info {{ ternary (eq spell.type 'trick') 'hidden' '' }}"
+        >
+          <label
+            for="spell-duration-{{ @index }}"
+            >{{ localize 'FACES.Actor.spell.duration' }}</label
+          >
+          <input
+            id="spell-duration-{{ @index }}"
+            name="system.spells.{{ @index }}.duration"
+            type="{{ ternary (eq spell.type 'trick') 'hidden' 'number' }}"
+            value="{{ spell.duration }}"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label
+          for="spell-description-{{ @index }}"
+          >{{ localize 'FACES.Actor.spell.description' }}</label
+        >
+        <textarea
+          id="spell-description-{{ @index }}"
+          name="system.spells.{{ @index }}.description"
+          rows="8"
+          >{{ spell.description }}</textarea
+        >
+      </div>
+    </div>
+    {{/each}}
+    <a class="faces-spell-add"
+      ><div class="faces-spell-add-block">
+        <i class="fa-solid fa-circle-plus"></i></div
+    ></a>
+  </section>
+</div>

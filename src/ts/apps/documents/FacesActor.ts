@@ -3,7 +3,7 @@ import { FacesActorSystem } from "../schemas/FacesActorSchema";
 import FacesActorRollDialog from "../dialogs/FacesRollDialog";
 import { moduleId } from "../../constants";
 import { StatHelpers } from "../helpers/StatHelpers";
-import { Carac, Weapon } from "../schemas/commonSchema";
+import { Carac, Spell, Weapon } from "../schemas/commonSchema";
 
 export default class FacesActor extends Actor {
   public constructor(data: any, context: any) {
@@ -224,7 +224,7 @@ export default class FacesActor extends Actor {
   }
 
   public async updateXp(xp: number) {
-    // const syst = this.system as any as BrigandyneActorSystem;
+    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     if (syst.experience.current + xp < 0) {
@@ -242,6 +242,54 @@ export default class FacesActor extends Actor {
           ),
         },
       },
+    });
+  }
+
+  public async addSpell(spell: Spell) {
+    // const syst = this.system as any as FacesActorSystem;
+    const syst: FacesActorSystem = this.system as any as FacesActorSystem;
+
+    await this.update({
+      system: {
+        spells: [...syst.spells, spell],
+      },
+    });
+  }
+
+  public async deleteSpell(spellId: number) {
+    // const syst = this.system as any as FacesActorSystem;
+    const syst: FacesActorSystem = this.system as any as FacesActorSystem;
+
+    console.log("spellId", spellId);
+    console.log(
+      syst.spells.filter((spell: Spell, index: number) =>
+        spell ? index !== spellId : true
+      )
+    );
+    await this.update({
+      system: {
+        spells: syst.spells.filter((spell: Spell, index: number) =>
+          spell ? index !== spellId : true
+        ),
+      },
+    });
+  }
+
+  public async moveSpell(spellId: number, direction: number) {
+    // const syst = this.system as any as FacesActorSystem;
+    const syst: FacesActorSystem = this.system as any as FacesActorSystem;
+
+    if (spellId + direction < 0 || spellId + direction >= syst.spells.length) {
+      return;
+    }
+
+    let spells = [...syst.spells];
+    const spell = spells[spellId];
+    spells[spellId] = spells[spellId + direction];
+    spells[spellId + direction] = spell;
+
+    await this.update({
+      system: { spells: spells },
     });
   }
 }

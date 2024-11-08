@@ -21,6 +21,7 @@ export default class FacesRollsRegister {
     event.preventDefault();
     const actorId = event.currentTarget?.dataset.actorId;
     const actor = game.actors?.get(actorId);
+    console.log(actor);
 
     const explode = parseInt(event.currentTarget.dataset.explode) ?? 0;
     const difficulty = parseInt(event.currentTarget.dataset.difficulty) ?? 0;

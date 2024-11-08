@@ -7,6 +7,7 @@ import {
 } from "../../constants";
 import FacesActor from "../documents/FacesActor";
 import { StatHelpers } from "../helpers/StatHelpers";
+import { Spell } from "../schemas/commonSchema";
 
 export default class FacesItemSheet extends ActorSheet {
   constructor(object: any, options = {}) {
@@ -80,6 +81,13 @@ export default class FacesItemSheet extends ActorSheet {
   private activateListenersPC(html: JQuery) {
     html.find(".faces-xp").on("click", this._onUpdateXp.bind(this));
     html.find(".faces-mana-update").on("click", this._onUpdateMana.bind(this));
+
+    html
+      .find(".faces-spell-delete")
+      .on("click", this._onDeleteSpell.bind(this));
+    html.find(".faces-spell-move").on("click", this._onMoveSpell.bind(this));
+    html.find(".faces-spell-add").on("click", this._onAddSpell.bind(this));
+
     if (game.settings?.get(moduleIdCore, "extraGauge.enable")) {
       html
         .find(".faces-extra-update")
@@ -150,6 +158,33 @@ export default class FacesItemSheet extends ActorSheet {
     const xp = parseInt(input.value) ?? 0;
 
     await (this.actor as FacesActor).updateXp(mult * xp);
+    this.render();
+  }
+
+  private async _onAddSpell(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const spell: Spell = {
+      name: "",
+      description: "",
+      difficulty: 0,
+      duration: 0,
+    };
+    await (this.actor as FacesActor).addSpell(spell);
+    this.render();
+  }
+
+  private async _onDeleteSpell(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const spellId = parseInt(event.currentTarget.dataset.spell) ?? -1;
+    await (this.actor as FacesActor).deleteSpell(spellId);
+    this.render();
+  }
+
+  private async _onMoveSpell(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const spellId = parseInt(event.currentTarget.dataset.spell) ?? -1;
+    const direction = parseInt(event.currentTarget.dataset.direction) ?? 1;
+    await (this.actor as FacesActor).moveSpell(spellId, direction);
     this.render();
   }
 }

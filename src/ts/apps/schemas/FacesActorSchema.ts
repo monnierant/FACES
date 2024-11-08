@@ -15,6 +15,8 @@ import {
   experienceSchema,
   Armor,
   armorSchema,
+  spellSchema,
+  Spell,
 } from "./commonSchema";
 
 export interface FacesActorSystem {
@@ -49,6 +51,7 @@ export interface FacesActorSystem {
   signs: string;
   background: string;
   notes: string;
+  spells: Spell[];
 }
 
 export const facesActorSchema = {
@@ -143,6 +146,10 @@ export const facesActorSchema = {
   signs: new fields.StringField({ initial: "" }),
   background: new fields.StringField({ initial: "" }),
   notes: new fields.StringField({ initial: "" }),
+
+  spells: new fields.ArrayField(new fields.SchemaField(spellSchema()), {
+    initial: [],
+  }),
 };
 
 export type FacesActorSchema = typeof facesActorSchema;
