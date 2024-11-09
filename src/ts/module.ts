@@ -74,24 +74,32 @@ Hooks.once("init", () => {
   // CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
   CONFIG.Actor.documentClass = FacesActor;
 
+  // let sheet = new ActorSheet({}, { width: 600, height: 760 });
+  let sheet = new FacesActorSheet({});
+  console.log(sheet);
+
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(moduleId, FacesActorSheet, { makeDefault: true });
 
   preloadTemplates();
   setupSettings();
-
-  Hooks.on(
-    "renderChatMessage",
-    (app: Application, html: JQuery, data: any): void => {
-      if (app === undefined) {
-        console.log("app is undefined");
-      }
-
-      if (data === undefined) {
-        console.log("data is undefined");
-      }
-
-      FacesRollsRegister.registerTriggers(html);
-    }
-  );
 });
+
+Hooks.on(
+  "renderChatMessage",
+  (app: Application, html: JQuery, data: any): void => {
+    if (app === undefined) {
+      console.log("app is undefined");
+    }
+
+    if (data === undefined) {
+      console.log("data is undefined");
+    }
+
+    if (html === undefined) {
+      console.log("html is undefined");
+    }
+
+    FacesRollsRegister.registerTriggers(html);
+  }
+);

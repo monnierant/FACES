@@ -8,6 +8,7 @@ import { Carac, Spell, Weapon } from "../schemas/commonSchema";
 export default class FacesActor extends Actor {
   public constructor(data: any, context: any) {
     super(data, context);
+    console.log(this);
   }
 
   public getTalentValueById(talentId: number) {
