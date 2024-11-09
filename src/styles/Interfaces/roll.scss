@@ -25,6 +25,15 @@
   justify-content: flex-start;
 }
 
+.result-dice.faill {
+  .result-dice-icon {
+    color: rgba(122, 31, 31, 0.247);
+  }
+  .result-dice-value {
+    color: red;
+  }
+}
+
 .result-dice.success {
   width: 2rem;
   height: 2rem;

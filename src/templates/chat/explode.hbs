@@ -1,9 +1,6 @@
 <div class="dice-roll">
   <div class="dice-result">
-    <div
-      class="cowboy-dice-tooltip dice-tooltip expanded"
-      style="display: block"
-    >
+    <div class="faces-dice-tooltip expanded" style="display: block">
       {{#if weapon}}
       <div>
         {{ weapon.name }} :
@@ -14,7 +11,7 @@
         <div class="dice">
           <header class="part-header flexrow">
             <span class="part-formula"
-              >{{ previousResult }} + {{ roll.formula }}
+              >{{ previousResult }} + {{ roll.total }}
             </span>
 
             <span class="part-total">
@@ -36,7 +33,7 @@
             {{ degree }}°
             {{/if}}
           </h4>
-          {{> (partial moduleId "diceDetails") roll=roll }}
+          {{> (partial moduleId "diceDetails") roll=roll isExplode=true}}
           <div class="faces-roll-actions">
             {{#if weapon}}
             {{#if success}}

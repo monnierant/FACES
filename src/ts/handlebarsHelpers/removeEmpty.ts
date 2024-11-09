@@ -1,5 +1,9 @@
 import { Carac } from "../apps/schemas/commonSchema";
 
 export const removeEmpty = function (a: Array<Carac>) {
-  return a.filter((v) => v !== undefined && v !== null && v.name !== "");
+  return a
+    .map((val, ind) => ({ value: val, index: ind }))
+    .filter(
+      (v) => v.value !== undefined && v.value !== null && v.value.name !== ""
+    );
 };
