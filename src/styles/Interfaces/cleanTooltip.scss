@@ -1,0 +1,10 @@
+.faces-dice-tooltip .part-header .part-total {
+  flex: none;
+  font-size: var(--font-size-16);
+  font-weight: bold;
+  padding: 0 5px;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-text-light-6);
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+}

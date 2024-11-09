@@ -144,13 +144,18 @@ export default class FacesActor extends Actor {
     }
 
     let canExplodes: number[] = [];
+    let max = 0;
     roll.dice.forEach((d) => {
       if (d.results[0].result == d.faces) {
         canExplodes.push(d.faces);
       }
+
+      if (d.results[0].result > max) {
+        max = d.results[0].result;
+      }
     });
 
-    const result = roll.total + modificator + double;
+    const result = max + modificator + double;
     const success = result >= difficulty;
     const degree = success ? Math.floor((result - difficulty) / 4) : 0;
 
@@ -162,6 +167,7 @@ export default class FacesActor extends Actor {
         difficulty: difficulty,
         modificator: modificator,
         roll: roll,
+        max: max,
         result: result,
         success: success,
         weapon:

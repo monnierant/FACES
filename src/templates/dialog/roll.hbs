@@ -20,7 +20,7 @@
       <select id="faces-dialog-modifier-talent" name="talent">
         <option selected value="-1"></option>
         {{#each (removeEmpty actor.system.talents) as |talent|}}
-        <option value="{{ @index }}">{{ talent.name }}</option>
+        <option value="{{ talent.index }}">{{ talent.value.name }}</option>
         {{/each}}
       </select>
     </div>

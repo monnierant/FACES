@@ -2,21 +2,18 @@
 
 <div class="dice-roll">
   <div class="dice-result">
-    <div
-      class="cowboy-dice-tooltip dice-tooltip expanded"
-      style="display: block"
-    >
+    <div class="faces-dice-tooltip expanded" style="display: block">
       {{#if weapon}}
       <div>
         {{ weapon.name }} :
         {{ localize (concat 'FACES.Global.dices.' weapon.damage) }}
       </div>
       {{/if}}
-      <section class="tooltip-part">
+      <section class="faces-tooltip-part">
         <div class="dice">
           <header class="part-header flexrow">
             <span class="part-formula"
-              >{{ roll.formula }} + {{ modificator }}
+              >{{ max }} + {{ modificator }}
               {{#if (gt double 0)}}
               + {{ double }}
               {{/if}}

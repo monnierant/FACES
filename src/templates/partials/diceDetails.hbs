@@ -1,9 +1,14 @@
 <div class="faces-roll-details">
-  {{log roll}}
+  {{ log isExplode }}
+  {{ log (and (eq result.result 1) isExplode)  }}
   {{#each roll.dice as |dice|}}
   {{#each dice.results as |result|}}
   <div
-    class="result-dice {{ ternary (eq dice.faces result.result) 'success' '' }}"
+    class="result-dice 
+    {{ ternary (eq dice.faces result.result) 'success' '' }}
+    {{ ternary (and (eq result.result 1) isExplode) 'faill' '' }}
+    
+    "
   >
     <i class="result-dice-icon monni-icon-d{{ dice.faces }}"></i>
     <div class="result-dice-value">
