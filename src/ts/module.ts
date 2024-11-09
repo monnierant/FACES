@@ -49,6 +49,7 @@ async function preloadTemplates(): Promise<any> {
     `systems/${moduleId}/templates/partials/actor/pannels/attributes.hbs`,
     `systems/${moduleId}/templates/partials/actor/pannels/inventory.hbs`,
     `systems/${moduleId}/templates/partials/actor/pannels/histo.hbs`,
+    `systems/${moduleId}/templates/partials/actor/pannels/spells.hbs`,
   ];
 
   return loadTemplates(templatePaths);
@@ -73,24 +74,49 @@ Hooks.once("init", () => {
   // CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
   CONFIG.Actor.documentClass = FacesActor;
 
+  // To fix a stupid issue with sheet replaced by $ at runtime
+  let sheet = new FacesActorSheet({});
+  console.log(sheet);
+
+  // let sheet: any; // = FacesActorSheet.sheet;
+  // Object.defineProperty(Application, "sheet", {
+  //   get() {
+  //     console.trace(sheet);
+  //     return sheet;
+  //   },
+  //   set(newSheet) {
+  //     console.trace(newSheet);
+  //     console.log("SET", newSheet);
+  //     if (newSheet === $) {
+  //       throw new Error("Sheet was set to $");
+  //     }
+
+  //     sheet = newSheet;
+  //   },
+  // });
+
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(moduleId, FacesActorSheet, { makeDefault: true });
 
   preloadTemplates();
   setupSettings();
-
-  Hooks.on(
-    "renderChatMessage",
-    (app: Application, html: JQuery, data: any): void => {
-      if (app === undefined) {
-        console.log("app is undefined");
-      }
-
-      if (data === undefined) {
-        console.log("data is undefined");
-      }
-
-      FacesRollsRegister.registerTriggers(html);
-    }
-  );
 });
+
+Hooks.on(
+  "renderChatMessage",
+  (app: Application, html: JQuery, data: any): void => {
+    if (app === undefined) {
+      console.log("app is undefined");
+    }
+
+    if (data === undefined) {
+      console.log("data is undefined");
+    }
+
+    if (html === undefined) {
+      console.log("html is undefined");
+    }
+
+    FacesRollsRegister.registerTriggers(html);
+  }
+);

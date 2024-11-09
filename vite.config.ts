@@ -23,7 +23,7 @@ export default defineConfig({
   },
   base: "",
   build: {
-    // sourcemap: true,
+    sourcemap: true,
     assetsDir: "dist/assets/",
     rollupOptions: {
       input: "src/ts/module.ts",

@@ -80,3 +80,17 @@ export const experienceSchema = () => ({
   total: new fields.NumberField({ initial: 0 }),
   spent: new fields.NumberField({ initial: 0 }),
 });
+
+export interface Spell {
+  name: string;
+  difficulty: number;
+  duration: number;
+  description: string;
+}
+
+export const spellSchema = () => ({
+  name: new fields.StringField({ initial: "" }),
+  difficulty: new fields.NumberField({ initial: 0 }),
+  duration: new fields.NumberField({ initial: 0 }),
+  description: new fields.StringField({ initial: "" }),
+});

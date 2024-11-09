@@ -40,7 +40,8 @@
             {{#if weapon}}
             {{#if success}}
             <button
-              class="faces-roll-damage"
+              class="faces-roll faces-roll-damage"
+              data-action="damage"
               data-actor-id="{{ actor.id }}"
               data-weapon-bonus="{{ weaponBonus }}"
               data-weapon-id="{{ weaponId }}"
@@ -53,7 +54,8 @@
             {{#unless faill}}
             {{#each canExplodes as |canExplode|}}
             <button
-              class="faces-roll-explode"
+              class="faces-roll faces-roll-explode"
+              data-action="explode"
               data-actor-id="{{ ../actor.id }}"
               data-weapon-id="{{ ../weaponId }}"
               data-weapon-is-melee="{{ ../weaponIsMelee }}"
