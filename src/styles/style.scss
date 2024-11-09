@@ -1,7 +1,13 @@
 @import "./clean.scss";
 
+@import "./mixin.scss";
+@import "./SVG/dices.scss";
+
+@import "./Fonts/Glyphter.scss";
+
 @import "./Interfaces/roll.scss";
 @import "./Interfaces/dialog.scss";
 @import "./Interfaces/hpmpbar.scss";
+@import "./Interfaces/spell.scss";
 
 @import "./Document/actor.scss";

@@ -7,11 +7,14 @@ import {
 } from "../../constants";
 import FacesActor from "../documents/FacesActor";
 import { StatHelpers } from "../helpers/StatHelpers";
+import { Spell } from "../schemas/commonSchema";
 
-export default class FacesItemSheet extends ActorSheet {
+export default class FacesActorSheet extends ActorSheet {
   constructor(object: any, options = {}) {
     super(object, { ...options, width: 600, height: 760 });
-    console.log("this.actor.type", this.actor.type);
+    // super(object, options);
+    // console.log("this.actor.type", this.actor.type);
+    // console.log(this);
   }
 
   private tab: string = "attributes";
@@ -55,9 +58,26 @@ export default class FacesItemSheet extends ActorSheet {
     return data;
   }
 
+  override async _render(...args: any[]) {
+    console.log("render");
+    console.log(this);
+    console.trace();
+    try {
+      return await super._render(...args);
+    } catch (e: any) {
+      console.error(e);
+    }
+  }
+
   // Event Listeners
   override activateListeners(html: JQuery) {
+    // console.log("activateListeners");
+    // console.log(this);
+    // console.trace();
     super.activateListeners(html);
+    // console.log("activateListeners-after");
+    // console.log(this);
+    // console.trace();
     // Roll handlers, click handlers, etc. would go here.
     html.find(".faces-roll").on("click", this._onRollDice.bind(this));
     html
@@ -78,12 +98,29 @@ export default class FacesItemSheet extends ActorSheet {
   }
 
   private activateListenersPC(html: JQuery) {
-    html.find(".faces-xp").on("click", this._onUpdateXp.bind(this));
-    html.find(".faces-mana-update").on("click", this._onUpdateMana.bind(this));
+    html.on("click", ".faces-xp", this._onUpdateXp.bind(this));
+    html.on("click", ".faces-mana-update", this._onUpdateMana.bind(this));
+    html.on("click", ".faces-spell-add", this._onAddSpell.bind(this));
+    html.on("click", ".faces-spell-move", this._onMoveSpell.bind(this));
+    html.on("click", ".faces-spell-delete", this._onDeleteSpell.bind(this));
+
+    // html.find(".faces-xp").on("click", this._onUpdateXp.bind(this));
+    // html.find(".faces-mana-update").on("click", this._onUpdateMana.bind(this));
+
+    // html.find(".faces-spell-add").on("click", this._onAddSpell.bind(this));
+    // html.find(".faces-spell-move").on("click", this._onAddSpell.bind(this));
+    // html.find(".faces-spell-delete").on("click", this._onAddSpell.bind(this));
+    // html.find(".faces-spell-delete2").on("click", this._onAddSpell.bind(this));
+    // html.find(".faces-spell-delete3").on("click", this._onAddSpell.bind(this));
+    // html.find(".faces-spell-delete4").on("click", this._onAddSpell.bind(this));
+    // html.find(".faces-spell-delete5").on("click", this._onAddSpell.bind(this));
+    // html.find(".faces-spell-delete6").on("click", this._onAddSpell.bind(this));
+
     if (game.settings?.get(moduleIdCore, "extraGauge.enable")) {
-      html
-        .find(".faces-extra-update")
-        .on("click", this._onUpdateExtra.bind(this));
+      html.on("click", ".faces-extra-update", this._onUpdateExtra.bind(this));
+      // html
+      //   .find(".faces-extra-update")
+      //   .on("click", this._onUpdateExtra.bind(this));
     }
   }
 
@@ -150,6 +187,33 @@ export default class FacesItemSheet extends ActorSheet {
     const xp = parseInt(input.value) ?? 0;
 
     await (this.actor as FacesActor).updateXp(mult * xp);
+    this.render();
+  }
+
+  private async _onAddSpell(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const spell: Spell = {
+      name: "",
+      description: "",
+      difficulty: 0,
+      duration: 0,
+    };
+    await (this.actor as FacesActor).addSpell(spell);
+    this.render();
+  }
+
+  private async _onDeleteSpell(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const spellId = parseInt(event.currentTarget.dataset.spell) ?? -1;
+    await (this.actor as FacesActor).deleteSpell(spellId);
+    this.render();
+  }
+
+  private async _onMoveSpell(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    const spellId = parseInt(event.currentTarget.dataset.spell) ?? -1;
+    const direction = parseInt(event.currentTarget.dataset.direction) ?? 1;
+    await (this.actor as FacesActor).moveSpell(spellId, direction);
     this.render();
   }
 }

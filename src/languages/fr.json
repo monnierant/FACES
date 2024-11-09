@@ -66,6 +66,17 @@
       "background": "Background",
       "damage": "Damage",
       "armors": "Protections",
+      "spells": "Sorts",
+      "spell": {
+        "name": "Nom",
+        "type": "Type",
+        "difficulty": "Difficulté",
+        "duration": "Durée",
+        "range": "Portée",
+        "resistance": "Résistance",
+        "formula": "Formule",
+        "description": "Description"
+      },
       "weapon": {
         "name": "Nom",
         "range": "Portée",
@@ -84,6 +95,7 @@
         "skills": "Compétences",
         "inventory": "Inventaire",
         "histo": "Historique",
+        "spells": "Sorts",
         "notes": "Notes"
       },
       "stats": {
