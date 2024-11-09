@@ -1,7 +1,7 @@
 import { FacesActorSystem } from "../schemas/FacesActorSchema";
 
 import FacesActorRollDialog from "../dialogs/FacesRollDialog";
-import { moduleId } from "../../constants";
+import { moduleId, moduleIdCore } from "../../constants";
 import { StatHelpers } from "../helpers/StatHelpers";
 import { Carac, Spell, Weapon } from "../schemas/commonSchema";
 
@@ -88,7 +88,9 @@ export default class FacesActor extends Actor {
     });
 
     const result = roll.total + previousResult;
-    const success = result >= difficulty && roll.total != 1;
+    const success =
+      result >= difficulty &&
+      (roll.total != 1 || !game.settings?.get(moduleIdCore, "oneisfaill"));
     const degree = success ? Math.floor((result - difficulty) / 4) : 0;
 
     const content = await renderTemplate(
@@ -111,6 +113,7 @@ export default class FacesActor extends Actor {
         weaponBonus: weaponBonus,
         canExplodes: remainingExplodes,
         moduleId: moduleId,
+        oneisfaill: game.settings?.get(moduleIdCore, "oneisfaill"),
       }
     );
 

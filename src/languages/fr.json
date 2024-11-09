@@ -20,6 +20,7 @@
       "currency2Hint": "2ème Monnaie utilisée dans le jeu (seulement si plusieurs monnaies)",
       "currency3": "3ème Monnaie",
       "currency3Hint": "3ème Monnaie utilisée dans le jeu (seulement si plusieurs monnaies)",
+      "oneisfaill": "1 => échec dans les dés explosifs",
       "extraGauge": {
         "enable": "Activer la jauge supplémentaire",
         "text": "Nom de la jauge supplémentaire"
