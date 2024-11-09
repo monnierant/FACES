@@ -74,9 +74,26 @@ Hooks.once("init", () => {
   // CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
   CONFIG.Actor.documentClass = FacesActor;
 
-  // let sheet = new ActorSheet({}, { width: 600, height: 760 });
+  // To fix a stupid issue with sheet replaced by $ at runtime
   let sheet = new FacesActorSheet({});
   console.log(sheet);
+
+  // let sheet: any; // = FacesActorSheet.sheet;
+  // Object.defineProperty(Application, "sheet", {
+  //   get() {
+  //     console.trace(sheet);
+  //     return sheet;
+  //   },
+  //   set(newSheet) {
+  //     console.trace(newSheet);
+  //     console.log("SET", newSheet);
+  //     if (newSheet === $) {
+  //       throw new Error("Sheet was set to $");
+  //     }
+
+  //     sheet = newSheet;
+  //   },
+  // });
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet(moduleId, FacesActorSheet, { makeDefault: true });

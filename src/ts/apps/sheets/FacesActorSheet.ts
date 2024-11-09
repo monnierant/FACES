@@ -11,12 +11,10 @@ import { Spell } from "../schemas/commonSchema";
 
 export default class FacesActorSheet extends ActorSheet {
   constructor(object: any, options = {}) {
-    console.log(options);
-    console.log({ ...options, width: 600, height: 760 });
     super(object, { ...options, width: 600, height: 760 });
     // super(object, options);
-    console.log("this.actor.type", this.actor.type);
-    console.log(this);
+    // console.log("this.actor.type", this.actor.type);
+    // console.log(this);
   }
 
   private tab: string = "attributes";
@@ -61,6 +59,9 @@ export default class FacesActorSheet extends ActorSheet {
   }
 
   override async _render(...args: any[]) {
+    console.log("render");
+    console.log(this);
+    console.trace();
     try {
       return await super._render(...args);
     } catch (e: any) {
@@ -70,7 +71,13 @@ export default class FacesActorSheet extends ActorSheet {
 
   // Event Listeners
   override activateListeners(html: JQuery) {
+    // console.log("activateListeners");
+    // console.log(this);
+    // console.trace();
     super.activateListeners(html);
+    // console.log("activateListeners-after");
+    // console.log(this);
+    // console.trace();
     // Roll handlers, click handlers, etc. would go here.
     html.find(".faces-roll").on("click", this._onRollDice.bind(this));
     html
