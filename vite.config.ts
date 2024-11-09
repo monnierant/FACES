@@ -1,7 +1,7 @@
 import * as fsPromises from "fs/promises";
 import copy from "rollup-plugin-copy";
 import { defineConfig, Plugin } from "vite";
-import path from "path";
+import path, { resolve } from "path";
 import fs from "fs-extra";
 
 const moduleVersion = process.env.MODULE_VERSION;
@@ -19,6 +19,11 @@ export default defineConfig({
       scss: {
         api: "modern-compiler",
       },
+    },
+  },
+  resolve: {
+    alias: {
+      $fonts: resolve("./src/static/fonts"),
     },
   },
   base: "",
@@ -52,7 +57,7 @@ export default defineConfig({
       targets: [
         { src: "src/languages", dest: "dist" },
         { src: "src/templates", dest: "dist" },
-        // { src: "src/images", dest: "dist" },
+        { src: "src/static", dest: "dist" },
       ],
       // hook: newLocal,
     }),

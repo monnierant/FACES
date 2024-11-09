@@ -20,17 +20,10 @@
               <i class="fa-solid fa-burst"></i>
             </span>
           </header>
-          <h4
-            class="dice-total
-          {{#if success}}
-          success
-          {{else}}
-          failure
-          {{/if}}
-          "
-          >
+          <h4 class="dice-total faces-result-damage">
             {{ result }}
           </h4>
+          {{> (partial moduleId "diceDetails") roll=roll }}
         </div>
       </section>
     </div>

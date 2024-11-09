@@ -20,8 +20,8 @@ export default class FacesRollsRegister {
       weaponBonus !== undefined &&
       weaponIsMelee
     ) {
-      // await actor.rollDamage(weaponId, weaponBonus, weaponIsMelee);
-      console.log(actor);
+      await actor.rollDamage(weaponId, weaponBonus, weaponIsMelee);
+      // console.log(actor);
     }
   }
 
@@ -55,17 +55,18 @@ export default class FacesRollsRegister {
       remainingExplodes !== undefined &&
       weaponIsMelee
     ) {
-      console.log(actor);
-      // if (actor) {
-      // await actor.rollExplode(
-      //   explode,
-      //   difficulty,
-      //   previousResult,
-      //   weaponId,
-      //   weaponIsMelee,
-      //   weaponBonus,
-      //   isNaN(remainingExplodes[0]) ? [] : remainingExplodes
-      // );
+      // console.log(actor);
+      if (actor) {
+        await actor.rollExplode(
+          explode,
+          difficulty,
+          previousResult,
+          weaponId,
+          weaponIsMelee,
+          weaponBonus,
+          isNaN(remainingExplodes[0]) ? [] : remainingExplodes
+        );
+      }
     }
   }
 }

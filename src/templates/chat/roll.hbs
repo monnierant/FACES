@@ -41,6 +41,7 @@
             {{ degree }}°
             {{/if}}
           </h4>
+          {{> (partial moduleId "diceDetails") roll=roll }}
           <div class="faces-roll-actions">
             {{#if weapon}}
             {{#if success}}

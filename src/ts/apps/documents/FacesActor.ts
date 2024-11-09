@@ -60,6 +60,7 @@ export default class FacesActor extends Actor {
         weaponIsMelee: weaponIsMelee,
         weaponBonus: weaponBonus,
         result: damage,
+        moduleId: moduleId,
       }
     );
 
@@ -109,6 +110,7 @@ export default class FacesActor extends Actor {
         weaponIsMelee: weaponIsMelee,
         weaponBonus: weaponBonus,
         canExplodes: remainingExplodes,
+        moduleId: moduleId,
       }
     );
 
@@ -171,6 +173,7 @@ export default class FacesActor extends Actor {
         weaponBonus: weaponBonus,
         double: double,
         canExplodes: canExplodes,
+        moduleId: moduleId,
       }
     );
 

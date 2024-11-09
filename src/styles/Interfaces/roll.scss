@@ -9,3 +9,54 @@
 .part-total {
   font-weight: normal;
 }
+
+.faces-roll-actions {
+  @include flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.faces-roll-details {
+  @include flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  justify-content: flex-start;
+}
+
+.result-dice.success {
+  .result-dice-icon {
+    color: rgba(31, 122, 46, 0.247);
+  }
+  .result-dice-value {
+    color: green;
+  }
+}
+.result-dice {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  .result-dice-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    font-size: 1.5rem;
+    color: #262b3735;
+  }
+
+  .result-dice-value {
+    position: relative;
+    z-index: 2;
+    @include flex;
+    flex-direction: row;
+    vertical-align: middle;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+  }
+}
