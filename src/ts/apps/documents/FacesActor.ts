@@ -139,10 +139,15 @@ export default class FacesActor extends Actor {
     const roll = await new Roll(`1d${attribute}+1d${talent}`).roll();
 
     let double = 0;
+    let criticalFaill = false;
     // double => +1
     if (roll.dice.length == 2) {
       if (roll.dice[0].results[0].result == roll.dice[1].results[0].result) {
-        double = 1;
+        if (roll.dice[0].results[0].result == 1) {
+          criticalFaill = true;
+        } else {
+          double = 1;
+        }
       }
     }
 
@@ -159,7 +164,7 @@ export default class FacesActor extends Actor {
     });
 
     const result = max + modificator + double;
-    const success = result >= difficulty;
+    const success = result >= difficulty && !criticalFaill;
     const degree = success ? Math.floor((result - difficulty) / 4) : 0;
 
     const content = await renderTemplate(
@@ -183,6 +188,7 @@ export default class FacesActor extends Actor {
         double: double,
         canExplodes: canExplodes,
         moduleId: moduleId,
+        criticalFaill: criticalFaill,
       }
     );
 
