@@ -33,7 +33,7 @@
             {{ degree }}°
             {{/if}}
           </h4>
-          {{> (partial moduleId "diceDetails") roll=roll isExplode=true}}
+          {{> (partial moduleId "diceDetails") roll=roll oneisfaill=oneisfaill}}
           <div class="faces-roll-actions">
             {{#if weapon}}
             {{#if success}}

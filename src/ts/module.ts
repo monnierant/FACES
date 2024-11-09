@@ -19,6 +19,7 @@ import { removeEmpty } from "./handlebarsHelpers/removeEmpty";
 import FacesRollsRegister from "./apps/rolls/FacesRollsRegister";
 import { join } from "./handlebarsHelpers/join";
 import { filterdice } from "./handlebarsHelpers/filterdice";
+import { and } from "./handlebarsHelpers/and";
 
 declare global {
   interface DocumentClassConfig {
@@ -31,6 +32,7 @@ declare global {
     "faces.multiCurrency": boolean;
     "faces.extraGauge.text": string;
     "faces.extraGauge.enable": boolean;
+    "faces.oneisfaill": boolean;
   }
 
   // interface DataModelConfig {
@@ -66,6 +68,7 @@ Hooks.once("init", () => {
   Handlebars.registerHelper("concat", concat);
   Handlebars.registerHelper("ternary", ternary);
   Handlebars.registerHelper("removeEmpty", removeEmpty);
+  Handlebars.registerHelper("and", and);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
     return a / b;

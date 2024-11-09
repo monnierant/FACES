@@ -21,6 +21,7 @@
       "currency2Hint": "2nd Currency used in the game (only if multiple currencies)",
       "currency3": "Currency",
       "currency3Hint": "2nd Currency used in the game (only if multiple currencies)",
+      "oneisfaill": "1 => faill in exploding dice",
       "extraGauge": {
         "enable": "Enable Extra Gauge",
         "text": "Name of Extra Gauge"
