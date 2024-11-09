@@ -26,10 +26,29 @@
 }
 
 .result-dice.success {
+  width: 2rem;
+  height: 2rem;
   .result-dice-icon {
     color: rgba(31, 122, 46, 0.247);
+    font-size: 2rem;
+    animation: explode 500ms ease-out infinite;
+    @keyframes explode {
+      0% {
+        transform: scale(1);
+      }
+      33% {
+        transform: scale(1.05) rotate(5deg);
+      }
+      66% {
+        transform: scale(1.1) rotate(-3deg);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
   .result-dice-value {
+    font-size: 1.2rem;
     color: green;
   }
 }
