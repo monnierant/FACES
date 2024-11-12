@@ -87,7 +87,10 @@ export default class FacesActor extends Actor {
       }
     });
 
-    const result = roll.total + previousResult;
+    const result =
+      roll.total == 1 && game.settings?.get(moduleIdCore, "oneisfaill")
+        ? 1
+        : roll.total + previousResult;
     const success =
       result >= difficulty &&
       (roll.total != 1 || !game.settings?.get(moduleIdCore, "oneisfaill"));
