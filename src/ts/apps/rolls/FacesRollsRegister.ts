@@ -29,44 +29,40 @@ export default class FacesRollsRegister {
     event.preventDefault();
     const actorId = event.currentTarget?.dataset.actorId;
     const actor = game.actors?.find((a) => a.id == actorId);
-    console.log(actor);
 
-    const explode = parseInt(event.currentTarget.dataset.explode) ?? 0;
-    const difficulty = parseInt(event.currentTarget.dataset.difficulty) ?? 0;
-    const previousResult =
-      parseInt(event.currentTarget.dataset.previousResult) ?? 0;
     const weaponId = parseInt(event.currentTarget.dataset.weaponId) ?? 0;
     const weaponIsMelee = event.currentTarget.dataset.weaponIsMelee == "true";
     const weaponBonus = parseInt(event.currentTarget.dataset.weaponBonus) ?? 0;
 
-    console.log(event.currentTarget.dataset.explodes);
+    const previousResult =
+      parseInt(event.currentTarget.dataset.previousResult) ?? 0;
+    const previousDice =
+      parseInt(event.currentTarget.dataset.previousDice) ?? 0;
+    const otherResult = parseInt(event.currentTarget.dataset.otherResult) ?? 0;
+    const otherDice = parseInt(event.currentTarget.dataset.otherDice) ?? 0;
+    const difficulty = parseInt(event.currentTarget.dataset.difficulty) ?? 0;
+    const double = parseInt(event.currentTarget.dataset.double) ?? 0;
+    const modificator = parseInt(event.currentTarget.dataset.modificator) ?? 0;
+    const isDoubleExplode = event.currentTarget.dataset.doubleExplode == "true";
 
-    const remainingExplodes = event.currentTarget.dataset.explodes
-      .split(",")
-      .map((e: string) => parseInt(e));
-
-    if (
-      actor &&
-      weaponId !== undefined &&
-      weaponBonus !== undefined &&
-      explode !== undefined &&
-      difficulty !== undefined &&
-      previousResult !== undefined &&
-      remainingExplodes !== undefined &&
-      weaponIsMelee
-    ) {
-      // console.log(actor);
-      if (actor) {
-        await actor.rollExplode(
-          explode,
-          difficulty,
+    if (actor) {
+      await actor.rollExplode(
+        difficulty,
+        double,
+        modificator,
+        {
           previousResult,
+          previousDice,
+          otherResult,
+          otherDice,
+        },
+        {
           weaponId,
           weaponIsMelee,
           weaponBonus,
-          isNaN(remainingExplodes[0]) ? [] : remainingExplodes
-        );
-      }
+        },
+        isDoubleExplode
+      );
     }
   }
 }

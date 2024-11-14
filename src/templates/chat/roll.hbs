@@ -13,7 +13,8 @@
         <div class="dice">
           <header class="part-header flexrow">
             <span class="part-formula"
-              >{{ max }} + {{ modificator }}
+              >( {{ rA.result }} | {{ rT.result }} : {{ max }}) +
+              {{ modificator }}
               {{#if (gt double 0)}}
               + {{ double }}
               {{/if}}
@@ -63,22 +64,69 @@
             </button>
             {{/if}}
             {{/if}}
-            {{#each canExplodes as |canExplode|}}
+            {{#if rA.canExplode}}
             <button
               class="faces-roll faces-roll-explode"
               data-action="explode"
-              data-actor-id="{{ ../actor.id }}"
-              data-weapon-id="{{ ../weaponId }}"
-              data-weapon-is-melee="{{ ../weaponIsMelee }}"
-              data-weapon-bonus="{{ ../weaponBonus }}"
-              data-explode="{{ canExplode }}"
-              data-explodes="{{ join (filterdice ../canExplodes @index) }}"
-              data-previous-result="{{ ../result }}"
-              data-difficulty="{{ ../difficulty }}"
+              data-actor-id="{{ actor.id }}"
+              data-weapon-id="{{ weaponId }}"
+              data-weapon-is-melee="{{ weaponIsMelee }}"
+              data-weapon-bonus="{{ weaponBonus }}"
+              data-previous-result="{{ rA.result }}"
+              data-previous-dice="{{ rA.faces }}"
+              data-other-result="{{ rT.result }}"
+              data-other-dice="{{ rT.faces }}"
+              data-difficulty="{{ difficulty }}"
+              data-double="{{ double }}"
+              data-modificator="{{ modificator }}"
+              data-double-explode="false"
             >
-              <i class="fa-solid fa-explosion"></i> D{{ canExplode }}
+              <i class="fa-solid fa-explosion"></i> D{{ rA.faces }}
             </button>
-            {{/each}}
+            {{/if}}
+            {{#if rT.canExplode}}
+            <button
+              class="faces-roll faces-roll-explode"
+              data-action="explode"
+              data-actor-id="{{ actor.id }}"
+              data-weapon-id="{{ weaponId }}"
+              data-weapon-is-melee="{{ weaponIsMelee }}"
+              data-weapon-bonus="{{ weaponBonus }}"
+              data-previous-result="{{ rT.result }}"
+              data-previous-dice="{{ rT.faces }}"
+              data-other-result="{{ rA.result }}"
+              data-other-dice="{{ rA.faces }}"
+              data-difficulty="{{ difficulty }}"
+              data-double="{{ double }}"
+              data-modificator="{{ modificator }}"
+              data-double-explode="false"
+            >
+              <i class="fa-solid fa-explosion"></i> D{{ rT.faces }}
+            </button>
+            {{/if}}
+            {{#if (and rA.canExplode rT.canExplode)}}
+            <button
+              class="faces-roll faces-roll-explode"
+              data-action="explode"
+              data-actor-id="{{ actor.id }}"
+              data-weapon-id="{{ weaponId }}"
+              data-weapon-is-melee="{{ weaponIsMelee }}"
+              data-weapon-bonus="{{ weaponBonus }}"
+              data-previous-result="{{ rT.result }}"
+              data-previous-dice="{{ rT.faces }}"
+              data-other-result="{{ rA.result }}"
+              data-other-dice="{{ rA.faces }}"
+              data-difficulty="{{ difficulty }}"
+              data-double="{{ double }}"
+              data-modificator="{{ modificator }}"
+              data-double-explode="true"
+            >
+              <i class="fa-solid fa-explosion"></i> D{{ rA.faces }} D{{
+                rT.faces
+              }}
+              <i class="fa-solid fa-explosion"></i>
+            </button>
+            {{/if}}
           </div>
         </div>
       </section>
