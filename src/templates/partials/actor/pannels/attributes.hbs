@@ -15,13 +15,18 @@
           value="{{ asset.name }}"
           placeholder="{{ localize 'FACES.Actor.placeholder.asset' }}"
         />
-        <input
-          class="faces-asset-effect"
-          name="system.assets.{{ @index }}.effect"
-          type="text"
-          value="{{ asset.effect }}"
-          placeholder="{{ localize 'FACES.Actor.placeholder.effect' }}"
-        />
+        <div class="faces-tooltip">
+          <input
+            class="faces-asset-effect"
+            name="system.assets.{{ @index }}.effect"
+            type="text"
+            value="{{ asset.effect }}"
+            placeholder="{{ localize 'FACES.Actor.placeholder.effect' }}"
+          />
+          {{#if (lengt asset.effect 20) }}
+          <div class="faces-asset-tooltip">{{ asset.effect }}</div>
+          {{/if}}
+        </div>
       </div>
       {{/each}}
     </div>
