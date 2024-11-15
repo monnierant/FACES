@@ -20,6 +20,7 @@ import FacesRollsRegister from "./apps/rolls/FacesRollsRegister";
 import { join } from "./handlebarsHelpers/join";
 import { filterdice } from "./handlebarsHelpers/filterdice";
 import { and } from "./handlebarsHelpers/and";
+import { lengt } from "./handlebarsHelpers/lengt";
 
 declare global {
   interface DocumentClassConfig {
@@ -69,6 +70,7 @@ Hooks.once("init", () => {
   Handlebars.registerHelper("ternary", ternary);
   Handlebars.registerHelper("removeEmpty", removeEmpty);
   Handlebars.registerHelper("and", and);
+  Handlebars.registerHelper("lengt", lengt);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
     return a / b;
