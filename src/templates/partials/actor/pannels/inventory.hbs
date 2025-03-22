@@ -55,7 +55,7 @@
             type="text"
             value="{{ contact.name }}"
           />
-          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.contacts.' @index) '.dice') dice=contact.dice }}
+          {{~> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.contacts.' @index) '.dice') dice=contact.dice }}
         </div>
         {{/each}}
       </section>

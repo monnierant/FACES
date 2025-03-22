@@ -61,7 +61,7 @@
         type="text"
         value="{{ weapon.name }}"
       />
-      {{> (partial ../moduleId 'diceSelector') class='faces-weapon-melee-dice' dices=../dices carac=(concat (concat 'system.meleeWeapons.' @index) '.damage') dice=weapon.damage }}
+      {{~> (partial ../moduleId 'diceSelector') class='faces-weapon-melee-dice' dices=../dices carac=(concat (concat 'system.meleeWeapons.' @index) '.damage') dice=weapon.damage }}
       <input
         class="faces-weapon-range"
         name="system.meleeWeapons.{{ @index }}.range"
@@ -106,7 +106,7 @@
         type="text"
         value="{{ weapon.name }}"
       />
-      {{> (partial ../moduleId 'diceSelector') class='faces-weapon-ranged-dice' dices=../dices carac=(concat (concat 'system.rangedWeapons.' @index) '.damage') dice=weapon.damage }}
+      {{~> (partial ../moduleId 'diceSelector') class='faces-weapon-ranged-dice' dices=../dices carac=(concat (concat 'system.rangedWeapons.' @index) '.damage') dice=weapon.damage }}
       <input
         class="faces-weapon-range"
         name="system.rangedWeapons.{{ @index }}.range"
