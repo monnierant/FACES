@@ -38,7 +38,7 @@
             }}
             | {{ health.line }})</label
           >
-          {{> (partial moduleId 'actor/hpmpbar') color="#b71c1c" value=health}}
+          {{~> (partial moduleId 'actor/hpmpbar') color="#b71c1c" value=health}}
           <div class="faces-header-section">
             <a class="faces-health-update" data-mult="-1"
               ><i class="fa-solid fa-square-caret-down"></i
@@ -68,7 +68,7 @@
               mana.max
             }})</label
           >
-          {{> (partial moduleId 'actor/hpmpbar') color="#1C7BB8" value=mana}}
+          {{~> (partial moduleId 'actor/hpmpbar') color="#1C7BB8" value=mana}}
 
           <div class="faces-header-section">
             <a class="faces-mana-update" data-mult="-1"
@@ -98,7 +98,7 @@
           <label
             >{{ extraGauge.text }} ({{ extra.current }}/{{ extra.max }})</label
           >
-          {{> (partial moduleId 'actor/hpmpbar') color="#1cb8ae" value=extra}}
+          {{~> (partial moduleId 'actor/hpmpbar') color="#1cb8ae" value=extra}}
 
           <div class="faces-header-section">
             <a class="faces-extra-update" data-mult="-1"
@@ -136,7 +136,7 @@
             type="hidden"
             value="{{ attribute.name }}"
           />
-          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.attributes.' @index) '.dice') dice=attribute.dice }}
+          {{~> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.attributes.' @index) '.dice') dice=attribute.dice }}
         </div>
         {{/each}}
       </div>
@@ -150,7 +150,7 @@
             value="{{ talent.name }}"
             placeholder="{{ localize 'FACES.Actor.talent' }}"
           />
-          {{> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.talents.' @index) '.dice') dice=talent.dice }}
+          {{~> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.talents.' @index) '.dice') dice=talent.dice }}
         </div>
         {{/each}}
       </div>
