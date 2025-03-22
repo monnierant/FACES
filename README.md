@@ -1,6 +1,6 @@
 # F.A.C.E.S. - Foundry VTT System
 
-F.A.C.E.S. is a french TTRPG made by `James Tornade`
+F.A.C.E.S. is a french TTRPG made by `James Tornade`.
 
 This character sheet is not an official one, its purpose is to provide an easy-to-use synthetic sheet for my DM's.
 
