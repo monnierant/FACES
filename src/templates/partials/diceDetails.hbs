@@ -1,6 +1,7 @@
 <div class="faces-roll-details">
   {{#each roll.dice as |dice|}}
   {{#each dice.results as |result|}}
+  {{#if (gt dice.faces 0)}}
   <div
     class="result-dice 
     {{ ternary (eq dice.faces result.result) 'success' '' }}
@@ -15,6 +16,7 @@
       </div>
     </div>
   </div>
+  {{/if}}
   {{/each}}
   {{/each}}
 </div>
