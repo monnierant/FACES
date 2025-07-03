@@ -17,8 +17,7 @@ export default class FacesRollsRegister {
     if (
       actor &&
       weaponId !== undefined &&
-      weaponBonus !== undefined &&
-      weaponIsMelee
+      weaponBonus !== undefined
     ) {
       await actor.rollDamage(weaponId, weaponBonus, weaponIsMelee);
       // console.log(actor);

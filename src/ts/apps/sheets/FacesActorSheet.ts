@@ -11,7 +11,7 @@ import { Spell } from "../schemas/commonSchema";
 
 export default class FacesActorSheet extends ActorSheet {
   constructor(object: any, options = {}) {
-    super(object, { ...options, width: 600, height: 760 });
+    super(object, { ...options, width: 610, height: 760 });
     // super(object, options);
     // console.log("this.actor.type", this.actor.type);
     // console.log(this);

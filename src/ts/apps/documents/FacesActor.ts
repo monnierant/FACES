@@ -43,6 +43,7 @@ export default class FacesActor extends Actor {
     weaponBonus: number,
     weaponIsMelee: boolean
   ) {
+
     const weapon = this.getWeapon(weaponId, weaponIsMelee);
     const roll = await new Roll(`1d${weapon.damage}`).roll();
 
@@ -134,13 +135,13 @@ export default class FacesActor extends Actor {
         rA: {
           result: valueA,
           faces: dices.previousDice,
-          canExplode: roll.dice[0].faces == roll.dice[0].results[0].result,
+          canExplode: roll.dice[0].faces == roll.dice[0].results[0].result && roll.dice[0].faces > 0,
         },
         rT: {
           result: valueT,
           faces: dices.otherDice,
           canExplode: isDoubleExplode
-            ? roll.dice[1].faces == roll.dice[1].results[0].result
+            ? roll.dice[1].faces == roll.dice[1].results[0].result  && roll.dice[1].faces > 0
             : false,
         },
         weapon:
@@ -217,12 +218,12 @@ export default class FacesActor extends Actor {
         rA: {
           result: roll.dice[0].results[0].result,
           faces: roll.dice[0].faces,
-          canExplode: roll.dice[0].faces == roll.dice[0].results[0].result,
+          canExplode: roll.dice[0].faces == roll.dice[0].results[0].result && roll.dice[0].faces > 0,
         },
         rT: {
           result: roll.dice[1].results[0].result,
           faces: roll.dice[1].faces,
-          canExplode: roll.dice[1].faces == roll.dice[1].results[0].result,
+          canExplode: roll.dice[1].faces == roll.dice[1].results[0].result && roll.dice[1].faces > 0,
         },
         result: result,
         max: max,
