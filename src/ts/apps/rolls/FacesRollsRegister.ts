@@ -1,3 +1,5 @@
+import FacesActor from "../documents/FacesActor";
+
 export default class FacesRollsRegister {
   public static async registerTriggers(html: JQuery<HTMLElement>) {
     console.log(html);
@@ -19,7 +21,7 @@ export default class FacesRollsRegister {
       weaponId !== undefined &&
       weaponBonus !== undefined
     ) {
-      await actor.rollDamage(weaponId, weaponBonus, weaponIsMelee);
+      await (actor as FacesActor).rollDamage(weaponId, weaponBonus, weaponIsMelee);
       // console.log(actor);
     }
   }
@@ -45,7 +47,7 @@ export default class FacesRollsRegister {
     const isDoubleExplode = event.currentTarget.dataset.doubleExplode == "true";
 
     if (actor) {
-      await actor.rollExplode(
+      await (actor as FacesActor).rollExplode(
         difficulty,
         double,
         modificator,
