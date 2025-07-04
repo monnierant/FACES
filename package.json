@@ -1,5 +1,5 @@
 {
-  "name": "faces",
+  "name": "brigandyne",
   "version": "1.0.1",
   "description": "A template project for FoundryVTT modules using Typescript",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "publish": "node publish.cjs"
   },
   "devDependencies": {
-    "@league-of-foundry-developers/foundry-vtt-types": "^12.331.1-beta",
+    "@league-of-foundry-developers/foundry-vtt-types": "^13.341.1",
     "axios": "^1.7.3",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-sass": "^1.13.2",

@@ -1,14 +1,14 @@
-@import "./clean.scss";
+@use "clean.scss";
 
-@import "./mixin.scss";
-@import "./SVG/dices.scss";
+@use "mixin.scss";
+@use "SVG/dices.scss";
 
-@import "./Fonts/Glyphter.scss";
+@use "Fonts/Glyphter.scss";
 
-@import "./Interfaces/cleanTooltip.scss";
-@import "./Interfaces/roll.scss";
-@import "./Interfaces/dialog.scss";
-@import "./Interfaces/hpmpbar.scss";
-@import "./Interfaces/spell.scss";
+@use "Interfaces/cleanTooltip.scss";
+@use "Interfaces/roll.scss";
+@use "Interfaces/dialog.scss";
+@use "Interfaces/hpmpbar.scss";
+@use "Interfaces/spell.scss";
 
-@import "./Document/actor.scss";
+@use "Document/actor.scss";

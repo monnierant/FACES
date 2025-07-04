@@ -12,16 +12,14 @@ import { Spell } from "../schemas/commonSchema";
 export default class FacesActorSheet extends ActorSheet {
   constructor(object: any, options = {}) {
     super(object, { ...options, width: 610, height: 760 });
-    // super(object, options);
-    // console.log("this.actor.type", this.actor.type);
-    // console.log(this);
+    
   }
 
   private tab: string = "attributes";
 
   // Define the template to use for this sheet
   override get template() {
-    return `systems/${moduleId}/templates/sheets/actor/actor-sheet-${this.actor.system.type}.hbs`;
+    return `systems/${moduleId}/templates/sheets/actor/actor-sheet-${this.actor.type}.hbs`;
   }
 
   // Data to be passed to the template when rendering
@@ -29,7 +27,7 @@ export default class FacesActorSheet extends ActorSheet {
     const data: any = super.getData();
     data.moduleId = moduleId;
 
-    data.tabs = tabs[this.actor.system.type as keyof typeof tabs];
+    data.tabs = tabs[this.actor.type as keyof typeof tabs];
     data.tab = this.tab;
     data.dices = dices;
 
@@ -47,7 +45,7 @@ export default class FacesActorSheet extends ActorSheet {
 
     data.difficultyLevels = difficultyLevels;
 
-    if (this.actor.system.type === "character") {
+    if (this.actor.type === "character") {
       data.health = StatHelpers.calculateActorHealth(this.actor as FacesActor);
       data.mana = StatHelpers.calculateActorMana(this.actor as FacesActor);
       if (game.settings?.get(moduleIdCore, "extraGauge.enable")) {
@@ -71,13 +69,7 @@ export default class FacesActorSheet extends ActorSheet {
 
   // Event Listeners
   override activateListeners(html: JQuery) {
-    // console.log("activateListeners");
-    // console.log(this);
-    // console.trace();
     super.activateListeners(html);
-    // console.log("activateListeners-after");
-    // console.log(this);
-    // console.trace();
     // Roll handlers, click handlers, etc. would go here.
     html.find(".faces-roll").on("click", this._onRollDice.bind(this));
     html
@@ -92,7 +84,7 @@ export default class FacesActorSheet extends ActorSheet {
       .find(".faces-health-update")
       .on("click", this._onUpdateHealth.bind(this));
 
-    if (this.actor.system.type === "character") {
+    if (this.actor.type === "character") {
       this.activateListenersPC(html);
     }
   }
@@ -104,23 +96,11 @@ export default class FacesActorSheet extends ActorSheet {
     html.on("click", ".faces-spell-move", this._onMoveSpell.bind(this));
     html.on("click", ".faces-spell-delete", this._onDeleteSpell.bind(this));
 
-    // html.find(".faces-xp").on("click", this._onUpdateXp.bind(this));
-    // html.find(".faces-mana-update").on("click", this._onUpdateMana.bind(this));
 
-    // html.find(".faces-spell-add").on("click", this._onAddSpell.bind(this));
-    // html.find(".faces-spell-move").on("click", this._onAddSpell.bind(this));
-    // html.find(".faces-spell-delete").on("click", this._onAddSpell.bind(this));
-    // html.find(".faces-spell-delete2").on("click", this._onAddSpell.bind(this));
-    // html.find(".faces-spell-delete3").on("click", this._onAddSpell.bind(this));
-    // html.find(".faces-spell-delete4").on("click", this._onAddSpell.bind(this));
-    // html.find(".faces-spell-delete5").on("click", this._onAddSpell.bind(this));
-    // html.find(".faces-spell-delete6").on("click", this._onAddSpell.bind(this));
 
     if (game.settings?.get(moduleIdCore, "extraGauge.enable")) {
       html.on("click", ".faces-extra-update", this._onUpdateExtra.bind(this));
-      // html
-      //   .find(".faces-extra-update")
-      //   .on("click", this._onUpdateExtra.bind(this));
+
     }
   }
 

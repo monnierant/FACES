@@ -13,7 +13,7 @@ import { partial } from "./handlebarsHelpers/partial";
 import { setupSettings } from "./settings";
 
 import FacesActorDataModel from "./apps/datamodels/FacesActorDataModel";
-// import MyNpcRoleActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
+import FacesNpcActorDataModel from "./apps/datamodels/FacesNpcActorDataModel";
 import FacesActor from "./apps/documents/FacesActor";
 import { removeEmpty } from "./handlebarsHelpers/removeEmpty";
 import FacesRollsRegister from "./apps/rolls/FacesRollsRegister";
@@ -24,7 +24,7 @@ import { lengt } from "./handlebarsHelpers/lengt";
 
 declare global {
   interface DocumentClassConfig {
-    Actor: FacesActor;
+    Actor: typeof FacesActor;
   }
   interface SettingConfig {
     "faces.currency": string;
@@ -36,12 +36,12 @@ declare global {
     "faces.oneisfaill": boolean;
   }
 
-  // interface DataModelConfig {
-  //   Actor: {
-  //     someActorSubtype: SomeActorSubtypeDataModel;
-  //     anotherActorSubtype: AnotherActorSubtypeDataModel;
-  //   };
-  // }
+  interface DataModelConfig {
+    Actor: {
+      character: typeof FacesActorDataModel;
+      npc: typeof FacesNpcActorDataModel;
+    };
+  }
 }
 
 async function preloadTemplates(): Promise<any> {
@@ -77,7 +77,7 @@ Hooks.once("init", () => {
   });
 
   CONFIG.Actor.dataModels.character = FacesActorDataModel;
-  // CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
+  CONFIG.Actor.dataModels.npc = FacesNpcActorDataModel;
   CONFIG.Actor.documentClass = FacesActor;
 
   // To fix a stupid issue with sheet replaced by $ at runtime
@@ -108,9 +108,10 @@ Hooks.once("init", () => {
   setupSettings();
 });
 
+
 Hooks.on(
   "renderChatMessage",
-  (app: Application, html: JQuery, data: any): void => {
+  (app, html, data): void => {
     if (app === undefined) {
       console.log("app is undefined");
     }

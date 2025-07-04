@@ -243,7 +243,6 @@ export default class FacesActor extends Actor {
   }
 
   public async updateHealth(health: number) {
-    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     const healthValue = Math.clamp(
@@ -258,7 +257,6 @@ export default class FacesActor extends Actor {
   }
 
   public async updateMana(mana: number) {
-    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     const manaValue = Math.clamp(
@@ -272,7 +270,6 @@ export default class FacesActor extends Actor {
     });
   }
   public async updateExtra(extra: number) {
-    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     const extraValue = Math.clamp(
@@ -287,7 +284,6 @@ export default class FacesActor extends Actor {
   }
 
   public async updateXp(xp: number) {
-    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     if (syst.experience.current + xp < 0) {
@@ -309,7 +305,6 @@ export default class FacesActor extends Actor {
   }
 
   public async addSpell(spell: Spell) {
-    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     await this.update({
@@ -320,7 +315,6 @@ export default class FacesActor extends Actor {
   }
 
   public async deleteSpell(spellId: number) {
-    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     console.log("spellId", spellId);
@@ -339,7 +333,6 @@ export default class FacesActor extends Actor {
   }
 
   public async moveSpell(spellId: number, direction: number) {
-    // const syst = this.system as any as FacesActorSystem;
     const syst: FacesActorSystem = this.system as any as FacesActorSystem;
 
     if (spellId + direction < 0 || spellId + direction >= syst.spells.length) {
