@@ -1,7 +1,7 @@
 {
-  "name": "brigandyne",
+  "name": "faces",
   "version": "1.0.1",
-  "description": "A template project for FoundryVTT modules using Typescript",
+  "description": "FACES Foundryvtt System",
   "license": "MIT",
   "private": true,
   "type": "module",
