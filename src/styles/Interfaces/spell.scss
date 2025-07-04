@@ -1,5 +1,7 @@
+@use "dialog";
+
 .faces-spell {
-  @include flex;
+  @include dialog.flex;
   margin: 0 0 0.5em 0;
   padding: 0.5em;
   border: 1px solid #000;
@@ -12,7 +14,7 @@
 }
 
 .faces-spells-section {
-  @include flex;
+  @include dialog.flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -22,7 +24,7 @@
 }
 
 .faces-spell-add-block {
-  @include flex;
+  @include dialog.flex;
   flex-direction: column;
   width: min(calc(33% - 0.25rem), 200px);
   min-width: calc(200px - 1rem);
@@ -34,7 +36,7 @@
 }
 
 .faces-spell-infos {
-  @include flex;
+  @include dialog.flex;
   flex-direction: row;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
@@ -47,11 +49,11 @@
 }
 
 .faces-spell-name {
-  @include flex;
+  @include dialog.flex;
 }
 
 .faces-spell-type {
-  @include flex;
+  @include dialog.flex;
   gap: 0.5rem;
   select {
     width: 100%;

@@ -1,3 +1,5 @@
+@use "../Interfaces/dialog";
+
 .hidden {
   display: none;
 }
@@ -47,7 +49,7 @@
   }
 
   .faces-tabs {
-    @include flex;
+    @include dialog.flex;
     justify-content: flex-start;
     flex-direction: row;
     width: 100%;
@@ -64,7 +66,7 @@
   }
 
   .sheet-header .faces-header-section {
-    @include flex;
+    @include dialog.flex;
     flex-direction: row;
     width: 100%;
     gap: 0.5rem;
@@ -74,7 +76,7 @@
   .faces-assets-section,
   .faces-contacts,
   .faces-armors {
-    @include flex;
+    @include dialog.flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5em;
@@ -88,7 +90,7 @@
   }
 
   .faces-inventory {
-    @include flex;
+    @include dialog.flex;
     align-items: flex-start;
     gap: 0.5em;
     div {
@@ -119,7 +121,7 @@
   .faces-talents,
   .faces-attributes,
   .faces-assets {
-    @include flex;
+    @include dialog.flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0 0.25em;
@@ -135,7 +137,7 @@
   .faces-asset,
   .faces-contact,
   .faces-armor {
-    @include flex;
+    @include dialog.flex;
     flex-direction: row;
     gap: 0.1em;
 
@@ -159,7 +161,7 @@
     background-color: #f0f0f0;
     gap: 0 0.5rem;
     .faces-weapon {
-      @include flex;
+      @include dialog.flex;
       justify-content: flex-start;
 
       .faces-weapon-roll-icon {
@@ -194,7 +196,7 @@
 
   .faces-money,
   .faces-xp-section {
-    @include flex;
+    @include dialog.flex;
     justify-content: flex-start;
     gap: 0.1rem;
     input {
@@ -209,13 +211,13 @@
   }
 
   .faces-header-footer {
-    @include flex;
+    @include dialog.flex;
     justify-content: space-between;
     width: 100%;
   }
 
   .faces-stats {
-    @include flex;
+    @include dialog.flex;
     flex-direction: row;
     gap: 0.5rem;
     justify-content: space-between;
@@ -227,7 +229,7 @@
   }
 
   .faces-histo {
-    @include flex;
+    @include dialog.flex;
     gap: 0.5rem;
     align-items: flex-start;
     section {
@@ -239,7 +241,7 @@
     }
 
     .faces-info {
-      @include flex;
+      @include dialog.flex;
       flex-direction: column;
       gap: 0;
       flex-grow: 1;
@@ -261,7 +263,7 @@
 
   .faces-appearance-minisection,
   .faces-info-collumn {
-    @include flex;
+    @include dialog.flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.5rem;
