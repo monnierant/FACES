@@ -1,5 +1,5 @@
 <form class="actor-sheet {{ cssClass }}" autocomplete="off">
-  {{~> (partial moduleId "actor/header") currency=currency moduleId=moduleId actor=actor}}
+  {{~> (partial moduleId "actor/header") currency=currency moduleId=moduleId actor=actor tallenttooltip=tallenttooltip}}
 
   {{#each tabs as |onetab|}}
   {{~> (partial ../moduleId (concat "actor/pannels/" onetab)) currency=../currency moduleId=../moduleId dices=../dices actor=../actor display=(eq onetab ../tab)}}

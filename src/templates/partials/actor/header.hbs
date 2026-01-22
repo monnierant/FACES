@@ -148,6 +148,9 @@
             name="system.talents.{{ @index }}.name"
             type="text"
             value="{{ talent.name }}"
+            {{#if ../tallenttooltip}}
+            data-tooltip="{{talent.tooltip}}"
+            {{/if}}
             placeholder="{{ localize 'FACES.Actor.talent' }}"
           />
           {{~> (partial ../moduleId 'diceSelector') dices=../dices carac=(concat (concat 'system.talents.' @index) '.dice') dice=talent.dice }}
@@ -234,7 +237,10 @@
       {{!-- Tabs --}}
       <div class="faces-header-section faces-header-section-tabs">
         <div class="faces-tabs">
+          {{ log tabs }}
+
           {{#each tabs as |onetab|}}
+          {{#if (or ../tallenttooltip (ne onetab "tallenttooltip") )}}
           <a
             class="faces-tab
         {{#if (eq onetab ../tab)}}
@@ -245,6 +251,7 @@
           >
             {{ localize (concat 'FACES.Actor.tabs.' onetab) }}
           </a>
+          {{/if}}
           {{/each}}
         </div>
       </div>

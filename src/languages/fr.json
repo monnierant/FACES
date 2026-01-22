@@ -15,6 +15,8 @@
     "Settings": {
       "currency": "Monnaie",
       "currencyHint": "Monnaie utilisée dans le jeu",
+      "tallenttooltip": "Afficher l'infobulle du talent",
+      "tallenttooltipHint": "Afficher l'infobulle du talent au survol dans la fiche de personnage",
       "multiCurrency": "Diviser en 3 valeurs de monnaie comme par exmple (PO, PA, PC)",
       "currency2": "2ème Monnaie",
       "currency2Hint": "2ème Monnaie utilisée dans le jeu (seulement si plusieurs monnaies)",
@@ -78,6 +80,10 @@
         "formula": "Formule",
         "description": "Description"
       },
+      "tallenttooltip": {
+        "title": "Infobulle de Talent",
+        "description": "Affiche une infobulle avec la description du talent et l'attribut lié lors du survol des talents dans la fiche de personnage."
+      },
       "weapon": {
         "name": "Nom",
         "range": "Portée",
@@ -97,6 +103,7 @@
         "inventory": "Inventaire",
         "histo": "Historique",
         "spells": "Sorts",
+        "tallenttooltip": "Talents",
         "notes": "Notes"
       },
       "stats": {
