@@ -11,8 +11,7 @@ import { Spell } from "../schemas/commonSchema";
 
 export default class FacesActorSheet extends ActorSheet {
   constructor(object: any, options = {}) {
-    super(object, { ...options, width: 610, height: 760 });
-    
+    super(object, { ...options, width: 620, height: 765 });
   }
 
   private tab: string = "attributes";
@@ -96,11 +95,8 @@ export default class FacesActorSheet extends ActorSheet {
     html.on("click", ".faces-spell-move", this._onMoveSpell.bind(this));
     html.on("click", ".faces-spell-delete", this._onDeleteSpell.bind(this));
 
-
-
     if (game.settings?.get(moduleIdCore, "extraGauge.enable")) {
       html.on("click", ".faces-extra-update", this._onUpdateExtra.bind(this));
-
     }
   }
 
@@ -127,7 +123,7 @@ export default class FacesActorSheet extends ActorSheet {
     event.preventDefault();
     const parent = event.currentTarget.parentElement;
     const input = parent.querySelector(
-      "input[name='health']"
+      "input[name='health']",
     ) as HTMLInputElement;
     const mult = parseInt(event.currentTarget.dataset.mult) ?? 0;
     const health = parseInt(input.value) ?? 0;
@@ -139,7 +135,7 @@ export default class FacesActorSheet extends ActorSheet {
     event.preventDefault();
     const parent = event.currentTarget.parentElement;
     const input = parent.querySelector(
-      "input[name='mana']"
+      "input[name='mana']",
     ) as HTMLInputElement;
     const mult = parseInt(event.currentTarget.dataset.mult) ?? 0;
     const mana = parseInt(input.value) ?? 0;
@@ -151,7 +147,7 @@ export default class FacesActorSheet extends ActorSheet {
     event.preventDefault();
     const parent = event.currentTarget.parentElement;
     const input = parent.querySelector(
-      "input[name='extra']"
+      "input[name='extra']",
     ) as HTMLInputElement;
     const mult = parseInt(event.currentTarget.dataset.mult) ?? 0;
     const extra = parseInt(input.value) ?? 0;
