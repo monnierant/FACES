@@ -15,6 +15,8 @@
     "Settings": {
       "currency": "Currency",
       "currencyHint": "Currency used in the game",
+      "tallenttooltip": "Show Talent Tooltip",
+      "tallenttooltipHint": "Show Talent Tooltip on hover in character sheet",
       "multiCurrency": "Split into Currency 3 values",
       "multiCurrencyHint": "Currency split into 3 values like (GP, SP, CP)",
       "currency2": "2nd Currency",
@@ -79,6 +81,10 @@
         "formula": "Formula",
         "description": "Description"
       },
+      "tallenttooltip": {
+        "title": "Talent Tooltip",
+        "description": "Show a tooltip with talent description and linked attribute when hovering talents in the character sheet."
+      },
       "weapon": {
         "name": "Name",
         "range": "Range",
@@ -98,6 +104,7 @@
         "inventory": "Inventory",
         "histo": "History",
         "spells": "Spells",
+        "tallenttooltip": "Talent",
         "notes": "Notes"
       },
       "stats": {

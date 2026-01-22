@@ -70,4 +70,14 @@ export async function setupSettings(): Promise<any> {
     default: true,
     requiresReload: false, // when changing the setting, prompt the user to reload
   });
+
+  await game.settings?.register(moduleIdCore, "tallenttooltip", {
+    name: "FACES.Settings.tallenttooltip", // can also be an i18n key
+    hint: "FACES.Settings.tallenttooltipHint", // can also be an i18n key
+    scope: "world", // "world" = sync to db, "client" = local storage
+    config: true, // false if you dont want it to show in module config
+    type: Boolean, // Number, Boolean, String, or even a custom class or DataModel
+    default: false,
+    requiresReload: false, // when changing the setting, prompt the user to reload
+  });
 }

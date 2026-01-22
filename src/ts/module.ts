@@ -20,6 +20,7 @@ import FacesRollsRegister from "./apps/rolls/FacesRollsRegister";
 import { join } from "./handlebarsHelpers/join";
 import { filterdice } from "./handlebarsHelpers/filterdice";
 import { and } from "./handlebarsHelpers/and";
+import { or } from "./handlebarsHelpers/or";
 import { lengt } from "./handlebarsHelpers/lengt";
 
 declare global {
@@ -34,6 +35,7 @@ declare global {
     "faces.extraGauge.text": string;
     "faces.extraGauge.enable": boolean;
     "faces.oneisfaill": boolean;
+    "faces.tallenttooltip": boolean;
   }
 
   interface DataModelConfig {
@@ -54,6 +56,7 @@ async function preloadTemplates(): Promise<any> {
     `systems/${moduleId}/templates/partials/actor/pannels/inventory.hbs`,
     `systems/${moduleId}/templates/partials/actor/pannels/histo.hbs`,
     `systems/${moduleId}/templates/partials/actor/pannels/spells.hbs`,
+    `systems/${moduleId}/templates/partials/actor/pannels/tallenttooltip.hbs`,
   ];
 
   return loadTemplates(templatePaths);
@@ -69,7 +72,8 @@ Hooks.once("init", () => {
   Handlebars.registerHelper("concat", concat);
   Handlebars.registerHelper("ternary", ternary);
   Handlebars.registerHelper("removeEmpty", removeEmpty);
-  Handlebars.registerHelper("and", and);
+  Handlebars.registerHelper("myand", and);
+  Handlebars.registerHelper("myor", or);
   Handlebars.registerHelper("lengt", lengt);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
@@ -108,22 +112,18 @@ Hooks.once("init", () => {
   setupSettings();
 });
 
-
-Hooks.on(
-  "renderChatMessage",
-  (app, html, data): void => {
-    if (app === undefined) {
-      console.log("app is undefined");
-    }
-
-    if (data === undefined) {
-      console.log("data is undefined");
-    }
-
-    if (html === undefined) {
-      console.log("html is undefined");
-    }
-
-    FacesRollsRegister.registerTriggers(html);
+Hooks.on("renderChatMessage", (app, html, data): void => {
+  if (app === undefined) {
+    console.log("app is undefined");
   }
-);
+
+  if (data === undefined) {
+    console.log("data is undefined");
+  }
+
+  if (html === undefined) {
+    console.log("html is undefined");
+  }
+
+  FacesRollsRegister.registerTriggers(html);
+});

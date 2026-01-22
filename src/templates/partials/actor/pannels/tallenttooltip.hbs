@@ -1,0 +1,22 @@
+<div
+  class="
+{{#if (not display)}}
+  hidden
+{{/if}}"
+>
+  <div class="faces-tallenttooltip">
+    {{#each actor.system.talents as |talent index|}}
+    {{#if talent.name}}
+    <div class="talent-item">
+      <label class="talent-name">{{ talent.name }}</label>
+      <textarea
+        name="system.talents.{{ index }}.tooltip"
+        placeholder="Add notes for {{ talent.name }}..."
+        rows="3"
+        >{{ talent.tooltip }}</textarea
+      >
+    </div>
+    {{/if}}
+    {{/each}}
+  </div>
+</div>

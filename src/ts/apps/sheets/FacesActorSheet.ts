@@ -37,6 +37,8 @@ export default class FacesActorSheet extends ActorSheet {
       multi: game.settings?.get(moduleIdCore, "multiCurrency"),
     };
 
+    data.tallenttooltip = game.settings?.get(moduleIdCore, "tallenttooltip");
+
     data.extraGauge = {
       text: game.settings?.get(moduleIdCore, "extraGauge.text"),
       enabled: game.settings?.get(moduleIdCore, "extraGauge.enable"),

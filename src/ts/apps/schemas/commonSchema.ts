@@ -4,11 +4,13 @@ import fields = foundry.data.fields;
 export interface Carac {
   name: string;
   dice: number;
+  tooltip: string;
 }
 
 export const caracSchema = () => ({
   name: new fields.StringField({ initial: "" }),
   dice: new fields.NumberField({ initial: 0 }),
+  tooltip: new fields.StringField({ initial: "" }),
 });
 
 export interface VitalStat {
