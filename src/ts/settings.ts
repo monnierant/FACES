@@ -18,7 +18,7 @@ export async function setupSettings(): Promise<any> {
     config: true, // false if you dont want it to show in module config
     type: Boolean, // Number, Boolean, String, or even a custom class or DataModel
     default: false,
-    requiresReload: false, // when changing the setting, prompt the user to reload
+    requiresReload: true, // when changing the setting, prompt the user to reload
   });
 
   await game.settings?.register(moduleIdCore, "currency2", {
@@ -48,7 +48,7 @@ export async function setupSettings(): Promise<any> {
     config: true, // false if you dont want it to show in module config
     type: Boolean, // Number, Boolean, String, or even a custom class or DataModel
     default: false,
-    requiresReload: false, // when changing the setting, prompt the user to reload
+    requiresReload: true, // when changing the setting, prompt the user to reload
   });
 
   await game.settings?.register(moduleIdCore, "extraGauge.text", {
@@ -68,7 +68,7 @@ export async function setupSettings(): Promise<any> {
     config: true, // false if you dont want it to show in module config
     type: Boolean, // Number, Boolean, String, or even a custom class or DataModel
     default: true,
-    requiresReload: false, // when changing the setting, prompt the user to reload
+    requiresReload: true, // when changing the setting, prompt the user to reload
   });
 
   await game.settings?.register(moduleIdCore, "tallenttooltip", {
@@ -78,6 +78,6 @@ export async function setupSettings(): Promise<any> {
     config: true, // false if you dont want it to show in module config
     type: Boolean, // Number, Boolean, String, or even a custom class or DataModel
     default: false,
-    requiresReload: false, // when changing the setting, prompt the user to reload
+    requiresReload: true, // when changing the setting, prompt the user to reload
   });
 }
